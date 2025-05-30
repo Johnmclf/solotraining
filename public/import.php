@@ -1,6 +1,6 @@
 <?php
 try {
-    $pdo = new PDO("mysql:host=mysql;dbname=solotraining", "root", "solo5263");
+    $pdo = new PDO("mysql:host=mysql;dbname=solotraining", "root", getenv('DB_PASSWORD'));
 
     // Modifier la colonne 'id' pour ajouter AUTO_INCREMENT
     $sql = "ALTER TABLE users 
