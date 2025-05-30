@@ -1,6 +1,6 @@
 <?php
 try {
-    $pdo = new PDO("mysql:host=mysql;dbname=solotraining", "root", getenv('DB_PASSWORD'));
+    $pdo = new PDO("mysql:host=mysql;dbname=railway", "root", getenv('DB_PASSWORD'));
 
     // Modification de la colonne id
     $sql = "ALTER TABLE users 
