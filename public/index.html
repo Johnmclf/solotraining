@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solo Training - Devenez un chasseur</title>
+    <script src="./asset/tailwind.js"></script>
+    <link href="./asset/googleapis" rel="stylesheet">
+    <link rel="shortcut icon" href="./asset/img/iconPage.jpg" type="image/x-icon">
+    <style>
+        body {
+            background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
+            color: #e2e8f0;
+        }
+        .glow-text {
+            text-shadow: 0 0 5px rgba(124, 58, 237, 0.7);
+        }
+        .hero-section {
+            background: url('./asset/img/backgroudSoloLeveling.jpg') no-repeat center center;
+            background-size: cover;
+        }
+        .hero-overlay {
+            background: rgba(15, 23, 42, 0.8);
+        }
+    </style>
+</head>
+<body class="font-roboto min-h-screen">
+    <!-- Header -->
+    <header class="bg-primary border-b border-accent/20">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-fire text-accent text-2xl"></i>
+                <h1 class="text-2xl font-orbitron glow-text">SOLO TRAINING</h1>
+            </div>
+            <div class="flex space-x-4">
+                <a href="login.php" class="bg-accent hover:bg-purple-700 text-white px-4 py-2 rounded-lg transition">Connexion</a>
+                <a href="register.php" class="bg-accent hover:bg-purple-700 text-white px-4 py-2 rounded-lg transition">Inscription</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section relative min-h-[70vh] flex items-center">
+        <div class="hero-overlay absolute inset-0"></div>
+        <div class="container mx-auto px-4 relative z-10 text-center">
+            <h2 class="text-4xl md:text-6xl font-orbitron glow-text mb-6">DEVENEZ UN CHASSEUR</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Surpassez vos limites quotidiennes et évoluez dans le système de rang Solo Leveling</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="register.php" class="bg-accent hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-lg transition transform hover:scale-105 text-lg">
+                    COMMENCER L'AVENTURE
+                </a>
+                <a href="#features" class="bg-transparent border-2 border-accent text-accent hover:bg-accent/10 font-bold py-3 px-8 rounded-lg transition transform hover:scale-105 text-lg">
+                    EN SAVOIR PLUS
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 bg-secondary/50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-orbitron glow-text mb-12 text-center">POURQUOI NOUS CHOISIR ?</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Feature 1 -->
+                <div class="bg-primary/50 p-6 rounded-xl border border-accent/20">
+                    <div class="text-accent text-4xl mb-4">
+                        <i class="fas fa-ranking-star"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Système de Rang</h3>
+                    <p class="text-gray-300">Évoluez de E à S puis jusqu'au rang légendaire de Jin-Woo en accomplissant vos objectifs.</p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="bg-primary/50 p-6 rounded-xl border border-accent/20">
+                    <div class="text-accent text-4xl mb-4">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Suivi Détaillé</h3>
+                    <p class="text-gray-300">Visualisez vos progrès avec des statistiques détaillées et des graphiques évolutifs.</p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="bg-primary/50 p-6 rounded-xl border border-accent/20">
+                    <div class="text-accent text-4xl mb-4">
+                        <i class="fas fa-dungeon"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Quêtes Quotidiennes</h3>
+                    <p class="text-gray-300">Débloquez des récompenses en accomplissant vos missions d'entraînement journalières.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary border-t border-accent/20 py-8">
+        <div class="container mx-auto px-4 text-center text-gray-400">
+            <p class="mb-4">© 2025 Solo Training </p>
+        </div>
+    </footer>
+</body>
+</html>

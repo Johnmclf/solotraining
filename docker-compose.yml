@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8080:80"
+    volumes:
+      - ./public:/var/www/html
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASS=solo5263
+      - DB_NAME=solotraining
+  db:
+    image: mysql:8
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: solo5263
+      MYSQL_DATABASE: solotraining
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./solotraining.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  mysql_data:
