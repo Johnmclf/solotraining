@@ -1,9 +1,10 @@
 <?php
 
-$host = 'db';
-$db = 'solotraining';
+$host = 'mysql';
+$db = 'railway';
 $user = 'root';
-$pass = 'solo5263';
+$port = '3306';
+$pass = getenv('DB_PASSWORD');
 
 date_default_timezone_set('Europe/Paris');
 
