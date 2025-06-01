@@ -52,11 +52,11 @@ $moyenne7jours = round(array_sum($jours) / 7, 1);
 $pompePourcent = min(100, ($pompeJour / 100) * 100);
 $abdosPourcent = min(100, ($abdosJour / 100) * 100);
 
-$pompeStatus = $pompePourcent >= 100 ? 'Terminé' : "$pompeJour/100";
-$abdosStatus = $abdosPourcent >= 100 ? 'Terminé' : "$abdosJour/100";
+$pompeStatus = $pompePourcent >= 100 ? 'Terminé' : "$pompeJour / 100";
+$abdosStatus = $abdosPourcent >= 100 ? 'Terminé' : "$abdosJour / 100";
 
-$pompeColor = $pompePourcent >= 100 ? 'bg-green-400' : 'bg-accent';
-$abdosColor = $abdosPourcent >= 100 ? 'bg-green-400' : 'bg-accent';
+$pompeColor = $pompePourcent >= 100 ? 'bg-green-500' : 'bg-white';
+$abdosColor = $abdosPourcent >= 100 ? 'bg-green-500' : 'bg-white';
 
 $pointsToday = intval(($pompeJour + $abdosJour) / 2);
 
@@ -185,7 +185,6 @@ if ($points < 1000) {
                             <?= $abdosStatus ?>
                         </span>
                     </div>
-                    <?php var_dump($pompePourcent); ?>
                     <div class="w-full bg-gray-700 rounded-full h-6 overflow-hidden">
                         <div class="<?= $abdosColor ?> h-full transition-all" style="width: <?= $abdosPourcent ?>%;"></div>
                     </div>

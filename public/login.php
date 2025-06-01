@@ -74,6 +74,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Fin classique
             header('Location: dashboard.php');
             exit;
+        } else {
+            $error = "Mot de passe ou identifiant incorect.";
         }
 
     } else {
