@@ -185,6 +185,7 @@ if ($points < 1000) {
                             <?= $abdosStatus ?>
                         </span>
                     </div>
+                    <?php var_dump($pompePourcent); ?>
                     <div class="w-full bg-gray-700 rounded-full h-6 overflow-hidden">
                         <div class="<?= $abdosColor ?> h-full transition-all" style="width: <?= $abdosPourcent ?>%;"></div>
                     </div>
