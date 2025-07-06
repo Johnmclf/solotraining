@@ -13,10 +13,10 @@ $pass = 'W0u726ACdDYflPkv';
 
 date_default_timezone_set('Europe/Paris');
 
-$dsn = "pgsql:host=$host;port=$port;dbname=$dbname";
+$dsn = "pgsql:host=$host;port=$port;dbname=$db";
 
 try {
-    $pdo = new PDO($dsn, $user, $password, [
+    $pdo = new PDO($dsn, $user, $pass, [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_TIMEOUT => 5,
     ]);
