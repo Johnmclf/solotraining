@@ -40,11 +40,11 @@ $stmt->execute([$userId]);
 $user = $stmt->fetch();
 
 $points = $user['point'];
-$pompeJour = $user['pompeJour'];
-$abdosJour = $user['abdosJour'];
+$pompeJour = $user['pompejour'];
+$abdosJour = $user['abdosjour'];
 
-$totalPompe = $user['totalPompe'] ?? 0;
-$totalAbdos = $user['totalAbdos'] ?? 0;
+$totalPompe = $user['totalpompe'] ?? 0;
+$totalAbdos = $user['totalabdos'] ?? 0;
 
 $jours = [$user['jour1'], $user['jour2'], $user['jour3'], $user['jour4'], $user['jour5'], $user['jour6'], $user['jour7']];
 $moyenne7jours = round(array_sum($jours) / 7, 1);
