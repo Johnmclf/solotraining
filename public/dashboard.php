@@ -19,7 +19,7 @@ $userId = $_SESSION['user_id'];
 $today = date('Y-m-d');
 
 // Récupère la dernière date de connexion
-$stmt = $conn->prepare("SELECT lastConnexion FROM users WHERE id = ?");
+$stmt = $conn->prepare("SELECT lastconnexion FROM users WHERE id = ?");
 $stmt->execute([$userId]);
 $lastConnexion = $stmt->fetchColumn();
 
@@ -34,7 +34,7 @@ if ($lastConnexionDate !== $today) {
 
 
 // Récupère les données de l'utilisateur
-$sql = "SELECT point, pompeJour, abdosJour,  totalPompe, totalAbdos, jour1, jour2, jour3, jour4, jour5, jour6, jour7 FROM users WHERE id = ?";
+$sql = "SELECT point, pompejour, abdosjour,  totalpompe, totalabdos, jour1, jour2, jour3, jour4, jour5, jour6, jour7 FROM users WHERE id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->execute([$userId]);
 $user = $stmt->fetch();

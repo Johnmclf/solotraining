@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['pseudo'] = $user['pseudo'];
 
-            $lastConnexion = $user['lastConnexion'];
+            $lastConnexion = $user['lastconnexion'];
             $today = date('Y-m-d');
 
             // Si on s'est pas connecté aujourd'hui

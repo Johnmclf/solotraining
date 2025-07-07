@@ -19,7 +19,7 @@ $user_id = $_SESSION['user_id'];
 $today = date('Y-m-d');
 
 // Récupère la dernière date de connexion
-$stmt = $conn->prepare("SELECT lastConnexion FROM users WHERE id = ?");
+$stmt = $conn->prepare("SELECT lastconnexion FROM users WHERE id = ?");
 $stmt->execute([$user_id]); // <-- ici, on utilise $user_id
 $lastConnexion = $stmt->fetchColumn();
 
@@ -38,8 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $nb_pompe = intval($_POST['pompe']);
         $points_ajoutes = intval($nb_pompe / 2);
         $sql = "UPDATE users SET 
-                    pompeJour = pompeJour + $nb_pompe, 
-                    totalPompe = totalPompe + $nb_pompe,
+                    pompejour = pompejour + $nb_pompe, 
+                    totalpompe = totalpompe + $nb_pompe,
                     point = point + $points_ajoutes
                 WHERE id = $user_id";
         $conn->query($sql);
@@ -49,44 +49,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $nb_abdos = intval($_POST['abdos']);
         $points_ajoutes = intval($nb_abdos / 2);
         $sql = "UPDATE users SET 
-                    abdosJour = abdosJour + $nb_abdos, 
-                    totalAbdos = totalAbdos + $nb_abdos,
+                    abdosjour = abdosjour + $nb_abdos, 
+                    totalabdos = totalabdos + $nb_abdos,
                     point = point + $points_ajoutes
                 WHERE id = $user_id";
         $conn->query($sql);
     }
     
     if (isset($_POST['reset_pompe'])) {
-        $result = $conn->query("SELECT pompeJour FROM users WHERE id = $user_id");
+        $result = $conn->query("SELECT pompejour FROM users WHERE id = $user_id");
         $data = $result->fetch(PDO::FETCH_ASSOC);
-        $penalite = intval($data['pompeJour'] / 2);
+        $penalite = intval($data['pompejour'] / 2);
         $sql = "UPDATE users SET 
                     point = GREATEST(0, point - $penalite), 
                     jour1 = GREATEST(0, jour1 - $penalite),
-                    totalPompe = GREATEST(0, totalPompe - pompeJour),
+                    totalpompe = GREATEST(0, totalpompe - pompejour),
                     pompeJour = 0 
                 WHERE id = $user_id";
         $conn->query($sql);
     }
 
     if (isset($_POST['reset_abdos'])) {
-        $result = $conn->query("SELECT abdosJour FROM users WHERE id = $user_id");
+        $result = $conn->query("SELECT abdosjour FROM users WHERE id = $user_id");
         $data = $result->fetch(PDO::FETCH_ASSOC);
-        $penalite = intval($data['abdosJour'] / 2);
+        $penalite = intval($data['abdosjour'] / 2);
         $sql = "UPDATE users SET 
                     point = GREATEST(0, point - $penalite), 
                     jour1 = GREATEST(0, jour1 - $penalite),
-                    totalAbdos = GREATEST(0, totalAbdos - abdosJour),
-                    abdosJour = 0 
+                    totalabdos = GREATEST(0, totalabdos - abdosjour),
+                    abdosjour = 0 
                 WHERE id = $user_id";
         $conn->query($sql);
     }
 
 
     // Mise à jour de jour1 uniquement pour l'affichage
-    $result = $conn->query("SELECT pompeJour, abdosJour FROM users WHERE id = $user_id");
+    $result = $conn->query("SELECT pompejour, abdosjour FROM users WHERE id = $user_id");
     $data = $result->fetch(PDO::FETCH_ASSOC);
-    $jour1 = intval(($data['pompeJour'] + $data['abdosJour']) / 2);
+    $jour1 = intval(($data['pompejour'] + $data['abdosjour']) / 2);
     $sql = "UPDATE users SET jour1 = $jour1 WHERE id = $user_id";
     $conn->query($sql);
 
@@ -95,11 +95,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Récupération des données pour affichage
-$result = $conn->query("SELECT pompeJour, abdosJour FROM users WHERE id = $user_id");
+$result = $conn->query("SELECT pompejour, abdosjour FROM users WHERE id = $user_id");
 $data = $result->fetch(PDO::FETCH_ASSOC);
 
-$pompeJour = intval($data['pompeJour']);
-$abdosJour = intval($data['abdosJour']);
+$pompeJour = intval($data['pompejour']);
+$abdosJour = intval($data['abdosjour']);
 
 $pompePourcent = min(100, ($pompeJour / 100) * 100);
 $abdosPourcent = min(100, ($abdosJour / 100) * 100);
