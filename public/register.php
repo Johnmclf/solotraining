@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ) VALUES (
                     :pseudo, :password, 0, 0,
                     0, 0, 0, 0, 0, 0, 0,
-                    0, CURDATE()
+                    0, CURRENT_DATE
                 )
             ");
             $stmt->execute([
