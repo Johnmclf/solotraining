@@ -3,7 +3,7 @@ session_start();
 
 require("db.php");
 
-$pdo = new PDO("pgsql:host=$host;dbname=$db;charset=utf8mb4", $user, $pass);
+$pdo = new PDO("pgsql:host=$host;dbname=$db", $user, $pass);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $error = '';
