@@ -205,9 +205,6 @@ if ($points < 1000) {
                         </span>
                     </div>
                     <div class="text-3xl font-bold mb-2"><?= $points ?></div>
-                    <a href="statistiques.php" class="text-accent hover:underline text-sm flex items-center">
-                        Voir l'historique <i class="fas fa-arrow-right ml-2 text-xs"></i>
-                    </a>
                 </div>
 
                 <!-- Carte Totaux -->
