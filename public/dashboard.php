@@ -151,105 +151,106 @@ if ($points < 1000) {
     <!-- Dashboard Content -->
     <main class="container mx-auto px-4 py-12 grid md:grid-cols-2 gap-8">
         <!-- Welcome Section -->
-        
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8">
-            <div>
-                <h2 class="text-2xl font-orbitron glow-text mb-2">Bon retour, Chasseur</h2>
-                <p class="text-gray-400">Votre progression aujourd'hui</p>
-            </div>
-        </div>
-
-        <!-- Stats Cards -->
-        <div class="grid md:grid-cols-3 gap-6 mb-8">
-            <!-- Objectif Pompes -->
-            <div class="dashboard-card p-6 rounded-xl col-span-2 mb-6">
-                <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-xl font-bold">Objectif Pompes</h2>
-                    <span class="text-lg font-semibold <?= $pompePourcent >= 100 ? 'text-green-400' : 'text-white' ?>">
-                        <?= $pompeStatus ?>
-                    </span>
+        <section class="mb-12">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8">
+                <div>
+                    <h2 class="text-2xl font-orbitron glow-text mb-2">Bon retour, Chasseur</h2>
+                    <p class="text-gray-400">Votre progression aujourd'hui</p>
                 </div>
-                <div class="w-full bg-gray-700 rounded-full h-6 overflow-hidden">
-                    <div class="<?= $pompeColor ?> h-full transition-all" style="width: <?= $pompePourcent ?>%;"></div>
-                </div>
-                <a href="objectifs.php" class="text-accent hover:underline text-sm flex items-center mt-2">
-                    Voir les détails <i class="fas fa-arrow-right ml-2 text-xs"></i>
-                </a>
             </div>
 
-            <!-- Objectif Abdos -->
-            <div class="dashboard-card p-6 rounded-xl col-span-2 mb-6">
-                <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-xl font-bold">Objectif Abdos</h2>
-                    <span class="text-lg font-semibold <?= $abdosPourcent >= 100 ? 'text-green-400' : 'text-white' ?>">
-                        <?= $abdosStatus ?>
-                    </span>
-                </div>
-                <div class="w-full bg-gray-700 rounded-full h-6 overflow-hidden">
-                    <div class="<?= $abdosColor ?> h-full transition-all" style="width: <?= $abdosPourcent ?>%;"></div>
-                </div>
-                <a href="objectifs.php" class="text-accent hover:underline text-sm flex items-center mt-2">
-                    Voir les détails <i class="fas fa-arrow-right ml-2 text-xs"></i>
-                </a>
-            </div>
-
-            <!-- Carte Points -->
-            <div class="dashboard-card rounded-xl p-6 col-span-2 mb-6">
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-lg font-bold flex items-center">
-                        <i class="fas fa-coins text-accent mr-2"></i>
-                        POINTS
-                    </h3>
-                    <span class="text-sm bg-accent/20 text-accent px-3 py-1 rounded-full">
-                        +<?= $pointsToday ?> aujourd'hui
-                    </span>
-                </div>
-                <div class="text-3xl font-bold mb-2"><?= $points ?></div>
-            </div>
-
-            <!-- Carte Totaux -->
-            <div class="dashboard-card rounded-xl p-6 col-span-2 mb-6">
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-lg font-bold flex items-center">
-                        <i class="fas fa-dumbbell text-accent mr-2"></i>
-                        TOTAL DES EXERCICES
-                    </h3>
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <div class="text-gray-400 text-sm">Pompes au total</div>
-                        <div class="text-2xl font-semibold"><?= $totalPompe ?></div>
+            <!-- Stats Cards -->
+            <div class="grid md:grid-cols-3 gap-6 mb-8">
+                <!-- Objectif Pompes -->
+                <div class="dashboard-card p-6 rounded-xl col-span-2 mb-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-bold">Objectif Pompes</h2>
+                        <span class="text-lg font-semibold <?= $pompePourcent >= 100 ? 'text-green-400' : 'text-white' ?>">
+                            <?= $pompeStatus ?>
+                        </span>
                     </div>
-                    <div>
-                        <div class="text-gray-400 text-sm">Abdos au total</div>
-                        <div class="text-2xl font-semibold"><?= $totalAbdos ?></div>
+                    <div class="w-full bg-gray-700 rounded-full h-6 overflow-hidden">
+                        <div class="<?= $pompeColor ?> h-full transition-all" style="width: <?= $pompePourcent ?>%;"></div>
+                    </div>
+                    <a href="objectifs.php" class="text-accent hover:underline text-sm flex items-center mt-2">
+                        Voir les détails <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                    </a>
+                </div>
+
+                <!-- Objectif Abdos -->
+                <div class="dashboard-card p-6 rounded-xl col-span-2 mb-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-bold">Objectif Abdos</h2>
+                        <span class="text-lg font-semibold <?= $abdosPourcent >= 100 ? 'text-green-400' : 'text-white' ?>">
+                            <?= $abdosStatus ?>
+                        </span>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-6 overflow-hidden">
+                        <div class="<?= $abdosColor ?> h-full transition-all" style="width: <?= $abdosPourcent ?>%;"></div>
+                    </div>
+                    <a href="objectifs.php" class="text-accent hover:underline text-sm flex items-center mt-2">
+                        Voir les détails <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                    </a>
+                </div>
+
+                <!-- Carte Points -->
+                <div class="dashboard-card rounded-xl p-6 col-span-2 mb-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-bold flex items-center">
+                            <i class="fas fa-coins text-accent mr-2"></i>
+                            POINTS
+                        </h3>
+                        <span class="text-sm bg-accent/20 text-accent px-3 py-1 rounded-full">
+                            +<?= $pointsToday ?> aujourd'hui
+                        </span>
+                    </div>
+                    <div class="text-3xl font-bold mb-2"><?= $points ?></div>
+                </div>
+
+                <!-- Carte Totaux -->
+                <div class="dashboard-card rounded-xl p-6 col-span-2 mb-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-bold flex items-center">
+                            <i class="fas fa-dumbbell text-accent mr-2"></i>
+                            TOTAL DES EXERCICES
+                        </h3>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <div class="text-gray-400 text-sm">Pompes au total</div>
+                            <div class="text-2xl font-semibold"><?= $totalPompe ?></div>
+                        </div>
+                        <div>
+                            <div class="text-gray-400 text-sm">Abdos au total</div>
+                            <div class="text-2xl font-semibold"><?= $totalAbdos ?></div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Moyenne des 7 derniers jours -->
-            <div class="dashboard-card rounded-xl p-6 col-span-2 mb-6">
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-lg font-bold flex items-center">
-                        <i class="fas fa-calendar-week text-accent mr-2"></i>
-                        Moyenne sur 7 jours
+                <!-- Moyenne des 7 derniers jours -->
+                <div class="dashboard-card rounded-xl p-6 col-span-2 mb-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-bold flex items-center">
+                            <i class="fas fa-calendar-week text-accent mr-2"></i>
+                            Moyenne sur 7 jours
+                        </h3>
+                    </div>
+                    <div class="text-2xl font-semibold text-white">
+                        <?= $moyenne7jours ?> points par jour
+                    </div>
+                </div>
+
+                <!-- Pompes Chart -->
+                <div class="dashboard-card rounded-xl p-6 col-span-2 mb-6">
+                    <h3 class="text-lg font-bold mb-4 flex items-center">
+                        <i class="fas fa-chart-bar text-accent mr-2"></i>
+                        Diagramme du total de points (7 derniers jours)
                     </h3>
+                    <canvas id="pointsChart"></canvas>
                 </div>
-                <div class="text-2xl font-semibold text-white">
-                    <?= $moyenne7jours ?> points par jour
-                </div>
-            </div>
 
-            <!-- Pompes Chart -->
-            <div class="dashboard-card rounded-xl p-6 col-span-2 mb-6">
-                <h3 class="text-lg font-bold mb-4 flex items-center">
-                    <i class="fas fa-chart-bar text-accent mr-2"></i>
-                    Diagramme du total de points (7 derniers jours)
-                </h3>
-                <canvas id="pointsChart"></canvas>
             </div>
-
-        </div>
+        </section>
     </main>
 
     <script>
