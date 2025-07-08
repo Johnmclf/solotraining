@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     }
 
                     // Mise à jour finale
-                    $update = $pdo->prepare("UPDATE users SET jour1 = ?, jour2 = ?, jour3 = ?, jour4 = ?, jour5 = ?, jour6 = ?, jour7 = ?, pompejour = 0, abdosjour = 0, lastconnexion = CURRENT_DATE(), point = ? WHERE id = ?");
+                    $update = $pdo->prepare("UPDATE users SET jour1 = ?, jour2 = ?, jour3 = ?, jour4 = ?, jour5 = ?, jour6 = ?, jour7 = ?, pompejour = 0, abdosjour = 0, lastconnexion = CURDATE(), point = ? WHERE id = ?");
                     $update->execute([...$jours, $nouveauxPoints, $user['id']]);
                 }
             }
