@@ -149,7 +149,7 @@ if ($points < 1000) {
     </header>
 
     <!-- Dashboard Content -->
-    <main class="container mx-auto px-4 py-8">
+    <main class="container mx-auto px-4 py-12 grid md:grid-cols-2 gap-8">
         <!-- Welcome Section -->
         <section class="mb-12">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8">
