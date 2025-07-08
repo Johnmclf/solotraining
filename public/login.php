@@ -40,8 +40,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     }
 
                     // Copie des objectifs du dernier jour enregistré
-                    $pompe = $user['pompeJour'];
-                    $abdos = $user['abdosJour'];
+                    $pompe = $user['pompejour'];
+                    $abdos = $user['abdosjour'];
 
                     // Calcul de la pénalité à appliquer
                     $penaliteTotale = 0;
