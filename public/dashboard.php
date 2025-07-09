@@ -58,9 +58,10 @@ $abdosStatus = $abdosPourcent >= 100 ? 'Terminé' : "$abdosJour / 100";
 $pompeColor = $pompePourcent >= 100 ? 'bg-green-500' : 'bg-white';
 $abdosColor = $abdosPourcent >= 100 ? 'bg-green-500' : 'bg-white';
 
-$pointsToday = intval(($pompeJour + $abdosJour) / 2);
-
 $combo = $user['combo'];
+
+$pointsToday = intval((($pompeJour + $abdosJour) / 2) * $combo);
+
 
 // Détermination du rang
 if ($points < 1000) {

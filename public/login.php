@@ -42,8 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $combo = 1.00; // Reset combo après 1 jour manqué
                 } else {
                     $comboGain = 0.00;
-                    if ($pompe >= 100) $comboGain += 0.01;
-                    if ($abdos >= 100) $comboGain += 0.01;
+                    if ($pompe >= 100) $comboGain += 0.05;
+                    if ($abdos >= 100) $comboGain += 0.05;
 
                     if ($comboGain > 0) {
                         $combo = round($combo + $comboGain, 2);
