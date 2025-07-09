@@ -217,7 +217,7 @@ if ($points < 1000) {
                             COMBO
                         </h3>
                     </div>
-                    <div class="text-3xl font-bold mb-2"><?= $combo ?> jours consécutifs</div>
+                    <div class="text-3xl font-bold mb-2">X <?= $combo ?></div>
                 </div>
 
                 <!-- Carte Totaux -->
