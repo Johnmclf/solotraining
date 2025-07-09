@@ -87,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Mise à jour de jour1 uniquement pour l'affichage
     $result = $conn->query("SELECT pompejour, abdosjour FROM users WHERE id = $user_id");
     $data = $result->fetch(PDO::FETCH_ASSOC);
-    $jour1 = intval(($data['pompejour'] + $data['abdosjour']) / 2);
+    $jour1 = intval((($data['pompejour'] + $data['abdosjour']) / 2) * $combo);
     $sql = "UPDATE users SET jour1 = $jour1 WHERE id = $user_id";
     $conn->query($sql);
 
