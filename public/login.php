@@ -25,6 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $lastConnexion = $user['lastconnexion'];
             $today = date('Y-m-d');
 
+            $combo = (float)$user['combo']; // Récupération actuelle du combo
+
             // Si on s'est pas connecté aujourd'hui
             if ($lastConnexion !== $today) {
                 $lastDate = new DateTime($lastConnexion);
@@ -32,58 +34,68 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $interval = $lastDate->diff($currentDate);
                 $daysPassed = $interval->days;
 
-                if ($daysPassed >= 1) {
-                    // Récupération des valeurs des 7 jours
-                    $jours = [];
-                    for ($i = 1; $i <= 7; $i++) {
-                        $jours[] = $user["jour$i"];
+                $pompe = (int)$user['pompejour'];
+                $abdos = (int)$user['abdosjour'];
+
+                // Gestion du combo
+                if ($daysPassed >= 2) {
+                    $combo = 1.00; // Reset combo après 1 jour manqué
+                } else {
+                    $comboGain = 0.00;
+                    if ($pompe >= 100) $comboGain += 0.01;
+                    if ($abdos >= 100) $comboGain += 0.01;
+
+                    if ($comboGain > 0) {
+                        $combo = round($combo + $comboGain, 2);
+                    } else {
+                        $combo = 1.00; // Aucun objectif rempli hier
                     }
-
-                    // Copie des objectifs du dernier jour enregistré
-                    $pompe = $user['pompejour'];
-                    $abdos = $user['abdosjour'];
-
-                    // Calcul de la pénalité à appliquer
-                    $penaliteTotale = 0;
-
-                    // Appliquer la pénalité pour chaque jour manqué
-                    for ($d = 0; $d < min($daysPassed, 7); $d++) {
-                        if ($pompe < 100) $penaliteTotale += 50;
-                        if ($abdos < 100) $penaliteTotale += 50;
-                    }
-
-                    // Application de la pénalité
-                    $nouveauxPoints = max(0, $user['point'] - $penaliteTotale);
-
-                    // Décalage des jours
-                    for ($i = 6; $i >= 0; $i--) {
-                        if ($i - $daysPassed >= 0) {
-                            $jours[$i] = $jours[$i - $daysPassed];
-                        } else {
-                            $jours[$i] = 0;
-                        }
-                    }
-
-                    // Mise à jour finale
-                  $update = $pdo->prepare("UPDATE users SET jour1 = ?, jour2 = ?, jour3 = ?, jour4 = ?, jour5 = ?, jour6 = ?, jour7 = ?, pompejour = 0, abdosjour = 0, lastconnexion = CURRENT_DATE, point = ? WHERE id = ?");
-                  $update->execute([...$jours, $nouveauxPoints, $user['id']]);
-
                 }
+
+                // Récupération des valeurs des 7 jours
+                $jours = [];
+                for ($i = 1; $i <= 7; $i++) {
+                    $jours[] = $user["jour$i"];
+                }
+
+                // Calcul de la pénalité
+                $penaliteTotale = 0;
+                for ($d = 0; $d < min($daysPassed, 7); $d++) {
+                    if ($pompe < 100) $penaliteTotale += 50;
+                    if ($abdos < 100) $penaliteTotale += 50;
+                }
+
+                $nouveauxPoints = max(0, $user['point'] - $penaliteTotale);
+
+                // Décalage des jours
+                for ($i = 6; $i >= 0; $i--) {
+                    if ($i - $daysPassed >= 0) {
+                        $jours[$i] = $jours[$i - $daysPassed];
+                    } else {
+                        $jours[$i] = 0;
+                    }
+                }
+
+                // Mise à jour finale
+                $update = $pdo->prepare("UPDATE users SET 
+                    jour1 = ?, jour2 = ?, jour3 = ?, jour4 = ?, jour5 = ?, jour6 = ?, jour7 = ?, 
+                    pompejour = 0, abdosjour = 0, lastconnexion = CURRENT_DATE, point = ?, combo = ? 
+                    WHERE id = ?");
+                $update->execute([...$jours, $nouveauxPoints, $combo, $user['id']]);
             }
 
-
-            // Fin classique
+            // Redirection
             header('Location: dashboard.php');
             exit;
         } else {
-            $error = "Mot de passe ou identifiant incorect.";
+            $error = "Mot de passe ou identifiant incorrect.";
         }
-
     } else {
         $error = "Veuillez remplir tous les champs.";
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="fr">

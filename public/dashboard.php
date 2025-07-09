@@ -34,7 +34,7 @@ if ($lastConnexionDate !== $today) {
 
 
 // Récupère les données de l'utilisateur
-$sql = "SELECT point, pompejour, abdosjour,  totalpompe, totalabdos, jour1, jour2, jour3, jour4, jour5, jour6, jour7 FROM users WHERE id = ?";
+$sql = "SELECT point, pompejour, abdosjour,  totalpompe, totalabdos, jour1, jour2, jour3, jour4, jour5, jour6, jour7, combo FROM users WHERE id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->execute([$userId]);
 $user = $stmt->fetch();
@@ -205,6 +205,17 @@ if ($points < 1000) {
                         </span>
                     </div>
                     <div class="text-3xl font-bold mb-2"><?= $points ?></div>
+                </div>
+
+                <!-- Carte Combo -->
+                <div class="dashboard-card rounded-xl p-6 col-span-2 mb-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-bold flex items-center">
+                            <i class="fas fa-fire text-accent mr-2"></i>
+                            COMBO
+                        </h3>
+                    </div>
+                    <div class="text-3xl font-bold mb-2"><?= $combo ?> jours consécutifs</div>
                 </div>
 
                 <!-- Carte Totaux -->

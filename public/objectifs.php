@@ -19,11 +19,13 @@ $user_id = $_SESSION['user_id'];
 $today = date('Y-m-d');
 
 // Récupère la dernière date de connexion
-$stmt = $conn->prepare("SELECT lastconnexion FROM users WHERE id = ?");
-$stmt->execute([$user_id]); // <-- ici, on utilise $user_id
-$lastConnexion = $stmt->fetchColumn();
+$stmt = $conn->prepare("SELECT lastconnexion, combo FROM users WHERE id = ?");
+$stmt->execute([$user_id]);
+$userInfo = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$lastConnexionDate = date('Y-m-d', strtotime($lastConnexion));
+$lastConnexionDate = date('Y-m-d', strtotime($userInfo['lastconnexion']));
+$combo = floatval($userInfo['combo']);
+
 if ($lastConnexionDate !== $today) {
     session_unset();
     session_destroy();
@@ -33,10 +35,10 @@ if ($lastConnexionDate !== $today) {
 
 // Traitement du formulaire
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
+
     if (isset($_POST['pompe'])) {
         $nb_pompe = intval($_POST['pompe']);
-        $points_ajoutes = intval($nb_pompe / 2);
+        $points_ajoutes = intval(($nb_pompe / 2) * $combo);
         $sql = "UPDATE users SET 
                     pompejour = pompejour + $nb_pompe, 
                     totalpompe = totalpompe + $nb_pompe,
@@ -47,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (isset($_POST['abdos'])) {
         $nb_abdos = intval($_POST['abdos']);
-        $points_ajoutes = intval($nb_abdos / 2);
+        $points_ajoutes = intval(($nb_abdos / 2) * $combo);
         $sql = "UPDATE users SET 
                     abdosjour = abdosjour + $nb_abdos, 
                     totalabdos = totalabdos + $nb_abdos,
@@ -55,16 +57,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 WHERE id = $user_id";
         $conn->query($sql);
     }
-    
+
     if (isset($_POST['reset_pompe'])) {
         $result = $conn->query("SELECT pompejour FROM users WHERE id = $user_id");
         $data = $result->fetch(PDO::FETCH_ASSOC);
-        $penalite = intval($data['pompejour'] / 2);
+        $penalite = intval(($data['pompejour'] / 2) * $combo);
         $sql = "UPDATE users SET 
                     point = GREATEST(0, point - $penalite), 
                     jour1 = GREATEST(0, jour1 - $penalite),
                     totalpompe = GREATEST(0, totalpompe - pompejour),
-                    pompeJour = 0 
+                    pompejour = 0 
                 WHERE id = $user_id";
         $conn->query($sql);
     }
@@ -72,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['reset_abdos'])) {
         $result = $conn->query("SELECT abdosjour FROM users WHERE id = $user_id");
         $data = $result->fetch(PDO::FETCH_ASSOC);
-        $penalite = intval($data['abdosjour'] / 2);
+        $penalite = intval(($data['abdosjour'] / 2) * $combo);
         $sql = "UPDATE users SET 
                     point = GREATEST(0, point - $penalite), 
                     jour1 = GREATEST(0, jour1 - $penalite),
@@ -81,7 +83,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 WHERE id = $user_id";
         $conn->query($sql);
     }
-
 
     // Mise à jour de jour1 uniquement pour l'affichage
     $result = $conn->query("SELECT pompejour, abdosjour FROM users WHERE id = $user_id");
@@ -142,6 +143,7 @@ if ($points < 1000) {
     $rankColor = "border-red-600 text-red-600 shadow-[0_0_20px_#dc2626]";
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
