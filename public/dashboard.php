@@ -60,6 +60,8 @@ $abdosColor = $abdosPourcent >= 100 ? 'bg-green-500' : 'bg-white';
 
 $pointsToday = intval(($pompeJour + $abdosJour) / 2);
 
+$combo = $user['combo'];
+
 // Détermination du rang
 if ($points < 1000) {
     $rank = "E";
