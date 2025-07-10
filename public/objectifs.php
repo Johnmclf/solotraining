@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (isset($_POST['pompe'])) {
         $nb_pompe = intval($_POST['pompe']);
-        $points_ajoutes = intval(($nb_pompe / 2) * $combo);
+        $points_ajoutes = round((($nb_pompe / 2) * $combo),2);
         $sql = "UPDATE users SET 
                     pompejour = pompejour + $nb_pompe, 
                     totalpompe = totalpompe + $nb_pompe,
@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (isset($_POST['abdos'])) {
         $nb_abdos = intval($_POST['abdos']);
-        $points_ajoutes = intval(($nb_abdos / 2) * $combo);
+        $points_ajoutes = round((($nb_abdos / 2) * $combo),2);
         $sql = "UPDATE users SET 
                     abdosjour = abdosjour + $nb_abdos, 
                     totalabdos = totalabdos + $nb_abdos,
@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['reset_pompe'])) {
         $result = $conn->query("SELECT pompejour FROM users WHERE id = $user_id");
         $data = $result->fetch(PDO::FETCH_ASSOC);
-        $penalite = intval(($data['pompejour'] / 2) * $combo);
+        $penalite = round((($data['pompejour'] / 2) * $combo),2);
         $sql = "UPDATE users SET 
                     point = GREATEST(0, point - $penalite), 
                     jour1 = GREATEST(0, jour1 - $penalite),
@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['reset_abdos'])) {
         $result = $conn->query("SELECT abdosjour FROM users WHERE id = $user_id");
         $data = $result->fetch(PDO::FETCH_ASSOC);
-        $penalite = intval(($data['abdosjour'] / 2) * $combo);
+        $penalite = round((($data['abdosjour'] / 2) * $combo),2);
         $sql = "UPDATE users SET 
                     point = GREATEST(0, point - $penalite), 
                     jour1 = GREATEST(0, jour1 - $penalite),
@@ -87,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Mise à jour de jour1 uniquement pour l'affichage
     $result = $conn->query("SELECT pompejour, abdosjour FROM users WHERE id = $user_id");
     $data = $result->fetch(PDO::FETCH_ASSOC);
-    $jour1 = intval((($data['pompejour'] + $data['abdosjour']) / 2) * $combo);
+    $jour1 = round(((($data['pompejour'] + $data['abdosjour']) / 2) * $combo),2);
     $sql = "UPDATE users SET jour1 = $jour1 WHERE id = $user_id";
     $conn->query($sql);
 
@@ -114,7 +114,7 @@ $abdosColor = $abdosPourcent >= 100 ? "bg-green-500" : "bg-white";
 // Récupération des points et définition du rang
 $resultPoints = $conn->query("SELECT point FROM users WHERE id = $user_id");
 $userData = $resultPoints->fetch(PDO::FETCH_ASSOC);
-$points = intval($userData['point']);
+$points = round(($userData['point']),2);
 
 // Détermination du rang et style en fonction des points
 if ($points < 1000) {
