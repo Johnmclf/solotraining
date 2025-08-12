@@ -261,7 +261,7 @@ $pointsRestants = $nextRank ? $nextRank['points'] - $points : 0;
                 </div>
 
                 <!-- Carte Prochain Rang -->
-                <div class="dashboard-card rounded-xl p-6 sm:col-span-2 lg:col-span-1">
+                <div class="dashboard-card rounded-xl p-6 col-span-2 mb-6">
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="text-lg font-bold flex items-center">
                             <i class="fas fa-trophy text-accent mr-2"></i>
