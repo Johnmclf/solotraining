@@ -107,7 +107,6 @@ foreach ($ranks as $r) {
         break;
     }
 }
-
 $pointsRestants = $nextRank ? $nextRank['points'] - $points : 0;
 ?>
 
