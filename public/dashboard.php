@@ -89,6 +89,26 @@ if ($points < 1000) {
     $rank = "ERROR";
     $rankColor = "border-red-600 text-red-600 shadow-[0_0_20px_#dc2626]";
 }
+
+$ranks = [
+    ['name' => 'E', 'points' => 1000, 'color' => 'border-green-400 text-green-400 shadow-[0_0_15px_#4ade80]'],
+    ['name' => 'D', 'points' => 2000, 'color' => 'border-blue-400 text-blue-400 shadow-[0_0_15px_#60a5fa]'],
+    ['name' => 'C', 'points' => 5000, 'color' => 'border-blue-700 text-blue-700 shadow-[0_0_15px_#1e40af]'],
+    ['name' => 'B', 'points' => 10000, 'color' => 'border-pink-400 text-pink-400 shadow-[0_0_15px_#f472b6]'],
+    ['name' => 'A', 'points' => 20000, 'color' => 'border-purple-500 text-purple-500 shadow-[0_0_15px_#a855f7]'],
+    ['name' => 'S', 'points' => 50000, 'color' => 'border-yellow-300 text-yellow-300 shadow-[0_0_15px_#fde047]'],
+    ['name' => 'NATION', 'points' => 100000, 'color' => 'border-orange-400 text-orange-400 shadow-[0_0_15px_#fb923c]']
+];
+
+$nextRank = null;
+foreach ($ranks as $r) {
+    if ($points < $r['points']) {
+        $nextRank = $r;
+        break;
+    }
+}
+
+$pointsRestants = $nextRank ? $nextRank['points'] - $points : 0;
 ?>
 
 <!DOCTYPE html>
@@ -238,6 +258,35 @@ if ($points < 1000) {
                             <div class="text-gray-400 text-sm">Abdos au total</div>
                             <div class="text-2xl font-semibold"><?= $totalAbdos ?></div>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Carte Prochain Rang -->
+                <div class="dashboard-card rounded-xl p-6 sm:col-span-2 lg:col-span-1">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-bold flex items-center">
+                            <i class="fas fa-trophy text-accent mr-2"></i>
+                            PROCHAIN RANG
+                        </h3>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <!-- Icône du prochain rang -->
+                        <?php if ($nextRank): ?>
+                            <div title="<?= $nextRank['name'] ?> (<?= $nextRank['points'] ?> pts)" 
+                                class="w-12 h-12 rounded-full flex items-center justify-center font-bold border-2 <?= $nextRank['color'] ?>">
+                                <?= $nextRank['name'] ?>
+                            </div>
+                        <?php else: ?>
+                            <div class="text-sm text-gray-400">Rang maximum atteint</div>
+                        <?php endif; ?>
+
+                        <!-- Points restants -->
+                        <?php if ($nextRank): ?>
+                            <div>
+                                <div class="text-gray-400 text-sm">Points restants</div>
+                                <div class="text-2xl font-semibold"><?= $pointsRestants ?></div>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </div>
 
