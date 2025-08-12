@@ -152,9 +152,9 @@ if ($points < 1000) {
     </header>
 
     <!-- Dashboard Content -->
-    <main class="container mx-auto px-4 py-12 grid md:grid-cols-2 gap-8">
+    <main class="container mx-auto px-4 py-12 max-w-6xl grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         <!-- Welcome Section -->
-        <section class="mb-12">
+        <section class="sm:col-span-2 lg:col-span-3">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8">
                 <div>
                     <h2 class="text-2xl font-orbitron glow-text mb-2">Bon retour, Chasseur</h2>
@@ -165,7 +165,7 @@ if ($points < 1000) {
             <!-- Stats Cards -->
             <div class="grid md:grid-cols-3 gap-6 mb-8">
                 <!-- Objectif Pompes -->
-                <div class="dashboard-card p-6 rounded-xl col-span-2 mb-6">
+                <div class="dashboard-card p-6 rounded-xl sm:col-span-2 lg:col-span-1">
                     <div class="flex justify-between items-center mb-4">
                         <h2 class="text-xl font-bold">Objectif Pompes</h2>
                         <span class="text-lg font-semibold <?= $pompePourcent >= 100 ? 'text-green-400' : 'text-white' ?>">
@@ -181,7 +181,7 @@ if ($points < 1000) {
                 </div>
 
                 <!-- Objectif Abdos -->
-                <div class="dashboard-card p-6 rounded-xl col-span-2 mb-6">
+                <div class="dashboard-card p-6 rounded-xl sm:col-span-2 lg:col-span-1">
                     <div class="flex justify-between items-center mb-4">
                         <h2 class="text-xl font-bold">Objectif Abdos</h2>
                         <span class="text-lg font-semibold <?= $abdosPourcent >= 100 ? 'text-green-400' : 'text-white' ?>">
@@ -197,7 +197,7 @@ if ($points < 1000) {
                 </div>
 
                 <!-- Carte Points -->
-                <div class="dashboard-card rounded-xl p-6 col-span-2 mb-6">
+                <div class="dashboard-card rounded-xl p-6 sm:col-span-2 lg:col-span-1">
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="text-lg font-bold flex items-center">
                             <i class="fas fa-coins text-accent mr-2"></i>
@@ -211,7 +211,7 @@ if ($points < 1000) {
                 </div>
 
                 <!-- Carte Combo -->
-                <div class="dashboard-card rounded-xl p-6 col-span-2 mb-6">
+                <div class="dashboard-card rounded-xl p-6 sm:col-span-2 lg:col-span-1">
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="text-lg font-bold flex items-center">
                             <i class="fas fa-fire text-accent mr-2"></i>
@@ -222,7 +222,7 @@ if ($points < 1000) {
                 </div>
 
                 <!-- Carte Totaux -->
-                <div class="dashboard-card rounded-xl p-6 col-span-2 mb-6">
+                <div class="dashboard-card rounded-xl p-6 sm:col-span-2 lg:col-span-1">
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="text-lg font-bold flex items-center">
                             <i class="fas fa-dumbbell text-accent mr-2"></i>
@@ -242,7 +242,7 @@ if ($points < 1000) {
                 </div>
 
                 <!-- Moyenne des 7 derniers jours -->
-                <div class="dashboard-card rounded-xl p-6 col-span-2 mb-6">
+                <div class="dashboard-card rounded-xl p-6 sm:col-span-2 lg:col-span-3">
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="text-lg font-bold flex items-center">
                             <i class="fas fa-calendar-week text-accent mr-2"></i>
