@@ -172,7 +172,7 @@ $pointsRestants = $nextRank ? $nextRank['points'] - $points : 0;
     </header>
 
     <!-- Dashboard Content -->
-    <main class="container mx-auto px-4 py-12 max-w-6xl grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+    <main class="container mx-auto px-4 py-12 grid md:grid-cols-2 gap-8 max-w-3xl">
         <!-- Welcome Section -->
         <section class="sm:col-span-2 lg:col-span-3">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8">
