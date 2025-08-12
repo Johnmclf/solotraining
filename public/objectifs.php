@@ -210,7 +210,7 @@ if ($points < 1000) {
     <main class="container mx-auto px-4 py-12 grid md:grid-cols-2 gap-8">
 
         <!-- Objectif Pompes -->
-        <div class="dashboard-card p-6 rounded-xl col-span-2">
+        <div class="dashboard-card p-6 rounded-xl col-span-2 max-w-2xl mx-auto">
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-xl font-bold">Objectif Pompes</h2>
                 <span class="text-lg font-semibold <?= $pompePourcent >= 100 ? 'text-green-400' : 'text-white' ?>">
@@ -223,7 +223,7 @@ if ($points < 1000) {
         </div>
 
         <!-- Objectif Abdos -->
-        <div class="dashboard-card p-6 rounded-xl col-span-2">
+        <div class="dashboard-card p-6 rounded-xl col-span-2 max-w-2xl mx-auto">
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-xl font-bold">Objectif Abdos</h2>
                 <span class="text-lg font-semibold <?= $abdosPourcent >= 100 ? 'text-green-400' : 'text-white' ?>">
@@ -236,7 +236,7 @@ if ($points < 1000) {
         </div>
 
         <!-- Formulaire Pompes -->
-        <div class="dashboard-card p-8 rounded-xl col-span-2">
+        <div class="dashboard-card p-8 rounded-xl col-span-2 max-w-2xl mx-auto">
             <h2 class="text-xl font-bold mb-4 text-center">Ajouter des Pompes</h2>
             <form method="POST" class="space-y-4">
                 <input type="number" name="pompe" min="1" placeholder="Nombre de pompes" required class="w-full p-3 rounded-lg bg-gray-800 text-white focus:outline-none">
@@ -247,7 +247,7 @@ if ($points < 1000) {
         </div>
 
         <!-- Formulaire Abdos -->
-        <div class="dashboard-card p-8 rounded-xl col-span-2">
+        <div class="dashboard-card p-8 rounded-xl col-span-2 max-w-2xl mx-auto">
             <h2 class="text-xl font-bold mb-4 text-center">Ajouter des Abdos</h2>
             <form method="POST" class="space-y-4">
                 <input type="number" name="abdos" min="1" placeholder="Nombre d'abdos" required class="w-full p-3 rounded-lg bg-gray-800 text-white focus:outline-none">
@@ -258,7 +258,7 @@ if ($points < 1000) {
         </div>
 
         <!-- Bloc Pompes -->
-        <div class="dashboard-card p-6 rounded-xl col-span-2">
+        <div class="dashboard-card p-6 rounded-xl col-span-2 max-w-2xl mx-auto">
             <h2 class="text-xl font-bold mb-2 text-center">Pompes aujourd'hui : <?= $pompeJour ?></h2>
             <form method="POST">
                 <button name="reset_pompe" type="submit"
@@ -269,7 +269,7 @@ if ($points < 1000) {
         </div>
 
         <!-- Bloc Abdos -->
-        <div class="dashboard-card p-6 rounded-xl col-span-2">
+        <div class="dashboard-card p-6 rounded-xl col-span-2 max-w-2xl mx-auto">
             <h2 class="text-xl font-bold mb-2 text-center">Abdos aujourd'hui : <?= $abdosJour ?></h2>
             <form method="POST">
                 <button name="reset_abdos" type="submit"
