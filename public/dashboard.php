@@ -67,7 +67,7 @@ $pointsToday = intval((($pompeJour + $abdosJour) / 2) * $combo);
 if ($points < 1000) {
     $rank = "E";
     $rankColor = "border-green-400 text-green-400 shadow-[0_0_15px_#4ade80]";
-} elseif ($points < 2000) {
+} elseif ($points < 3000) {
     $rank = "D";
     $rankColor = "border-blue-400 text-blue-400 shadow-[0_0_15px_#60a5fa]";
 } elseif ($points < 5000) {
@@ -76,7 +76,7 @@ if ($points < 1000) {
 } elseif ($points < 10000) {
     $rank = "B";
     $rankColor = "border-pink-400 text-pink-400 shadow-[0_0_15px_#f472b6]";
-} elseif ($points < 20000) {
+} elseif ($points < 30000) {
     $rank = "A";
     $rankColor = "border-purple-500 text-purple-500 shadow-[0_0_15px_#a855f7]";
 } elseif ($points < 50000) {
@@ -92,10 +92,10 @@ if ($points < 1000) {
 
 $ranks = [
     ['name' => 'D', 'points' => 1000, 'color' => 'border-blue-400 text-blue-400 shadow-[0_0_15px_#60a5fa]'],
-    ['name' => 'C', 'points' => 2000, 'color' => 'border-blue-700 text-blue-700 shadow-[0_0_15px_#1e40af]'],
-    ['name' => 'B', 'points' => 50000, 'color' => 'border-pink-400 text-pink-400 shadow-[0_0_15px_#f472b6]'],
+    ['name' => 'C', 'points' => 3000, 'color' => 'border-blue-700 text-blue-700 shadow-[0_0_15px_#1e40af]'],
+    ['name' => 'B', 'points' => 5000, 'color' => 'border-pink-400 text-pink-400 shadow-[0_0_15px_#f472b6]'],
     ['name' => 'A', 'points' => 10000, 'color' => 'border-purple-500 text-purple-500 shadow-[0_0_15px_#a855f7]'],
-    ['name' => 'S', 'points' => 20000, 'color' => 'border-yellow-300 text-yellow-300 shadow-[0_0_15px_#fde047]'],
+    ['name' => 'S', 'points' => 30000, 'color' => 'border-yellow-300 text-yellow-300 shadow-[0_0_15px_#fde047]'],
     ['name' => 'NATION', 'points' => 50000, 'color' => 'border-orange-400 text-orange-400 shadow-[0_0_15px_#fb923c]'],
     ['name' => 'ERROR', 'points' => 100000, 'color' => 'border-red-600 text-red-600 shadow-[0_0_20px_#dc2626]'],
 ];
