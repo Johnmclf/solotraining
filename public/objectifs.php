@@ -120,7 +120,7 @@ $points = round(($userData['point']),2);
 if ($points < 1000) {
     $rank = "E";
     $rankColor = "border-green-400 text-green-400 shadow-[0_0_15px_#4ade80]";
-} elseif ($points < 2000) {
+} elseif ($points < 3000) {
     $rank = "D";
     $rankColor = "border-blue-400 text-blue-400 shadow-[0_0_15px_#60a5fa]";
 } elseif ($points < 5000) {
@@ -129,7 +129,7 @@ if ($points < 1000) {
 } elseif ($points < 10000) {
     $rank = "B";
     $rankColor = "border-pink-400 text-pink-400 shadow-[0_0_15px_#f472b6]";
-} elseif ($points < 20000) {
+} elseif ($points < 30000) {
     $rank = "A";
     $rankColor = "border-purple-500 text-purple-500 shadow-[0_0_15px_#a855f7]";
 } elseif ($points < 50000) {
