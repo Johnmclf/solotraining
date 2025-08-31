@@ -151,228 +151,181 @@ if ($points < 1000) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Objectifs - Solo Training</title>
+  <script src="./asset/tailwind.js"></script>
+  <link href="./asset/googleapis" rel="stylesheet">
+  <link rel="stylesheet" href="asset/style.css">
   <link rel="shortcut icon" href="./asset/img/iconPage.jpg" type="image/x-icon">
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const toggle = document.getElementById("mobileToggle");
-      const menu = document.getElementById("mobileMenu");
-      const hamb = document.getElementById("hambIcon");
-      const close = document.getElementById("closeIcon");
-
-      toggle.addEventListener("click", () => {
-        const open = menu.classList.toggle("open");
-        toggle.setAttribute("aria-expanded", open);
-        menu.setAttribute("aria-hidden", !open);
-        hamb.style.display = open ? "none" : "inline";
-        close.style.display = open ? "inline" : "none";
-      });
-    });
-  </script>
-
   <style>
-    /* --- Base --- */
-    :root{
-      --bg: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
-      --card-bg: rgba(30,41,59,0.7);
-      --accent-border: rgba(124,58,237,0.3);
-      --header-bg: rgba(2,6,23,0.98);
-      --menu-bg: rgba(2,6,23,0.96);
-    }
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: Roboto, system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial;
-      background: var(--bg);
+    body {
+      background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
       color: #e2e8f0;
     }
-
-    .glow-text { text-shadow: 0 0 5px rgba(124,58,237,0.7); }
-
+    .glow-text { text-shadow: 0 0 5px rgba(124, 58, 237, 0.7); }
     .dashboard-card {
-      background: var(--card-bg);
+      background: rgba(30, 41, 59, 0.7);
       backdrop-filter: blur(10px);
-      border: 1px solid var(--accent-border);
-      border-radius: 1rem;
-      padding: 1.25rem;
-      margin-bottom: 1rem; /* mobile spacing */
-      transition: transform .22s ease, box-shadow .28s ease;
+      border: 1px solid rgba(124, 58, 237, 0.3);
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
     }
-    .dashboard-card:hover { transform: translateY(-2px); box-shadow:0 4px 12px rgba(0,0,0,.25); }
+    .rank-progress {
+      background: linear-gradient(90deg, #7c3aed 0%, #4f46e5 100%);
+      box-shadow: 0 0 10px rgba(124, 58, 237, 0.5);
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 
-    header { position: relative; z-index: 40; background: var(--header-bg); border-bottom: 1px solid rgba(124,58,237,0.08); }
-    nav.container { display:flex; align-items:center; justify-content:space-between; gap:1rem; }
-
-    /* Desktop / mobile helpers */
-    .desktop-menu { display: none; }
-    .mobile-toggle { display: flex; }
-
-    /* mobile menu (slide) */
+    /* --- Nouveau menu mobile (slide) --- */
     .mobile-menu {
-      position: absolute; left: 0; right: 0; top: 100%;
-      background: var(--menu-bg);
-      border-top: 1px solid rgba(124,58,237,0.08);
-      padding: 0.5rem 0;
-      z-index: 45;
-      max-height: 0; overflow: hidden; opacity: 0; pointer-events: none;
-      transition: max-height .32s ease, opacity .28s ease;
+      background: rgba(2,6,23,0.96);
+      border-top: 1px solid rgba(124,58,237,0.2);
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height .3s ease, opacity .3s ease;
     }
     .mobile-menu.open {
-      max-height: 420px;
+      max-height: 300px;
       opacity: 1;
-      pointer-events: auto;
     }
-
-    .mobile-menu .menu-inner { max-width: 1200px; margin: 0 auto; padding: .5rem 1rem; }
-    .mobile-menu a.menu-link {
-      display:block; padding: .6rem 0;
-      color: #e2e8f0; text-decoration: none; font-weight: 500;
+    .mobile-menu a {
+      display: block;
+      padding: .75rem 1rem;
+      color: #e2e8f0;
+      font-weight: 500;
+      text-decoration: none;
     }
-    .mobile-menu a.menu-link:hover { color: #fff; text-decoration: underline; }
-
-    .mobile-menu .row { display:flex; align-items:center; gap:.75rem; padding:.45rem 0; }
-
-    .mobile-toggle {
-      align-items:center; gap:.5rem; cursor:pointer;
-      color: #fff; background: transparent; border: none;
-      padding: .25rem .5rem; border-radius: .5rem;
-    }
-    .mobile-toggle:focus{ outline: 2px solid rgba(124,58,237,0.35); outline-offset:2px; }
-
-    @media (min-width: 768px){
-      .mobile-toggle { display: none !important; }
-      .mobile-menu { display: none !important; }
-      .desktop-menu { display: flex !important; align-items:center; gap:1.5rem; }
-      main {
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-        gap: 2rem;
-        max-width: 1200px;
-        margin: 2rem auto;
-        padding: 0 1rem;
-      }
-      aside { display:flex; flex-direction:column; gap:1.25rem; }
-    }
-
-    /* small UI niceties */
-    .rank-circle { width: 40px; height:40px; border-radius:999px; display:flex; align-items:center; justify-content:center; font-weight:700; border:2px solid #8b5cf6; }
-    .exit-img { width:44px; height:34px; object-fit:contain; opacity:.8; }
-    .exit-img:hover { opacity:1; }
-    .menu-label { font-weight:600; color:#e2e8f0; }
-    .menu-hint { font-size:.9rem; color:#9ca3af; }
+    .mobile-menu a:hover { color: #fff; text-decoration: underline; }
   </style>
 </head>
-<body>
+<body class="font-roboto min-h-screen">
   <!-- Header -->
-  <header>
-    <nav class="container mx-auto px-4 py-4" role="navigation" aria-label="Main navigation">
-      <!-- left -->
-      <div style="display:flex;align-items:center;gap:.6rem;">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="color: #8b5cf6;"><path d="M12 2s1.5 2.5 1.5 4-1 2.5-1 4 1 2.5 1 4-2 3-2 3-4-3-4-6 2-5 2-7-1-4-1-4 3 1 3 3z" fill="currentColor"/></svg>
-        <h1 class="glow-text" style="font-size:18px;margin:0;font-weight:700;">SOLO TRAINING</h1>
+  <header class="bg-primary border-b border-accent/20 relative z-40">
+    <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <i class="fas fa-fire text-accent text-2xl"></i>
+        <h1 class="text-2xl font-orbitron glow-text">SOLO TRAINING</h1>
       </div>
 
-      <!-- right -->
-      <div style="display:flex;align-items:center;gap:1rem;">
-        <!-- Desktop menu -->
-        <div class="desktop-menu">
-          <a href="dashboard.php" class="menu-link">Statistiques</a>
-          <a href="objectifs.php" class="menu-link">Objectifs</a>
-          <div style="display:flex;align-items:center;gap:.6rem;">
-            <div title="<?= $points ?> points" class="rank-circle <?= $rankColor ?>"><?= $rank ?></div>
-            <a href="index.html" aria-label="Exit" title="Quitter"><img src="./asset/img/iconExit.png" alt="exit" class="exit-img"></a>
+      <!-- Menu desktop -->
+      <div class="hidden md:flex items-center space-x-6">
+        <a href="dashboard.php" class="text-gray-300 hover:text-white transition">Statistiques</a>
+        <div class="flex items-center space-x-4">
+          <div title="<?= $points ?> points" class="w-10 h-10 rounded-full flex items-center justify-center font-bold border-2 <?= $rankColor ?>">
+            <?= $rank ?>
           </div>
-        </div>
-
-        <!-- Mobile toggle -->
-        <div id="mobileToggle" class="mobile-toggle" role="button" aria-expanded="false" aria-controls="mobileMenu" tabindex="0">
-          <span id="hambIcon" style="font-size:20px;line-height:1;">☰</span>
-          <span id="closeIcon" style="display:none;font-size:20px;line-height:1;">✖</span>
-          <span class="menu-label" style="font-size:14px;">Menu</span>
-        </div>
-      </div>
-    </nav>
-
-    <!-- Mobile menu -->
-    <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
-      <div class="menu-inner">
-        <a href="dashboard.php" class="menu-link">Statistiques</a>
-        <a href="objectifs.php" class="menu-link">Objectifs</a>
-        <div class="row" style="justify-content:space-between;">
-          <div style="display:flex;align-items:center;gap:.75rem;">
-            <div title="<?= $points ?> points" class="rank-circle <?= $rankColor ?>"><?= $rank ?></div>
-            <div>
-              <div style="font-weight:600;color:#e2e8f0;">Points</div>
-              <div style="font-size:.9rem;color:#9ca3af;">+<?= $pointsToday ?> aujourd'hui</div>
-            </div>
-          </div>
-          <a href="index.html" class="menu-link" style="display:flex;align-items:center;gap:.5rem;">
-            <img src="./asset/img/iconExit.png" alt="exit" class="exit-img" style="width:36px;height:28px;">
-            <span class="menu-hint">Quitter</span>
+          <a href="index.html" class="text-gray-300 hover:text-white transition">
+            <img src="./asset/img/iconExit.png" class="w-12 h-9 opacity-70 hover:opacity-100 transition duration-200 px-2" alt="EXIT">
           </a>
         </div>
       </div>
+
+      <!-- Bouton mobile -->
+      <button id="menu-btn" class="md:hidden flex items-center space-x-2 text-gray-300 focus:outline-none">
+        <span id="hamburger" class="text-2xl">☰</span>
+        <span id="close" class="hidden text-2xl">✖</span>
+        <span class="text-sm">Menu</span>
+      </button>
+    </nav>
+
+    <!-- Menu mobile (slide) -->
+    <div id="mobile-menu" class="mobile-menu md:hidden">
+      <a href="dashboard.php">Statistiques</a>
+      <a href="objectifs.php">Objectifs</a>
+      <a href="index.html">Quitter</a>
     </div>
   </header>
 
-  <!-- Content -->
-  <main>
-    <!-- Colonne principale -->
-    <section>
-      <!-- Objectifs -->
-      <div class="dashboard-card">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem;">
-          <h2>Objectif Pompes</h2>
-          <span class="<?= $pompePourcent >= 100 ? 'text-green-400' : 'text-white' ?>"><?= $pompeStatus ?></span>
+  <!-- Contenu -->
+  <main class="container mx-auto px-4 py-12 grid gap-8 md:grid-cols-3">
+    
+    <!-- Colonne de gauche (progress bars) -->
+    <div class="md:col-span-2 space-y-8">
+      <!-- Objectif Pompes -->
+      <div class="dashboard-card p-6 rounded-2xl">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-xl font-bold">Objectif Pompes</h2>
+          <span class="text-lg font-semibold <?= $pompePourcent >= 100 ? 'text-green-400' : 'text-white' ?>">
+            <?= $pompeStatus ?>
+          </span>
         </div>
-        <div style="background:#374151;border-radius:9999px;height:20px;overflow:hidden;">
-          <div class="<?= $pompeColor ?>" style="width:<?= $pompePourcent ?>%;height:100%;"></div>
-        </div>
-      </div>
-
-      <div class="dashboard-card">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem;">
-          <h2>Objectif Abdos</h2>
-          <span class="<?= $abdosPourcent >= 100 ? 'text-green-400' : 'text-white' ?>"><?= $abdosStatus ?></span>
-        </div>
-        <div style="background:#374151;border-radius:9999px;height:20px;overflow:hidden;">
-          <div class="<?= $abdosColor ?>" style="width:<?= $abdosPourcent ?>%;height:100%;"></div>
+        <div class="w-full bg-gray-700 rounded-full h-6 overflow-hidden">
+          <div class="<?= $pompeColor ?> h-full transition-all" style="width: <?= $pompePourcent ?>%;"></div>
         </div>
       </div>
 
-      <!-- Formulaires -->
-      <div class="dashboard-card">
-        <h2 style="text-align:center;margin-bottom:.75rem;">Ajouter des Pompes</h2>
+      <!-- Objectif Abdos -->
+      <div class="dashboard-card p-6 rounded-2xl">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-xl font-bold">Objectif Abdos</h2>
+          <span class="text-lg font-semibold <?= $abdosPourcent >= 100 ? 'text-green-400' : 'text-white' ?>">
+            <?= $abdosStatus ?>
+          </span>
+        </div>
+        <div class="w-full bg-gray-700 rounded-full h-6 overflow-hidden">
+          <div class="<?= $abdosColor ?> h-full transition-all" style="width: <?= $abdosPourcent ?>%;"></div>
+        </div>
+      </div>
+
+      <!-- Bloc Pompes -->
+      <div class="dashboard-card p-6 rounded-2xl text-center">
+        <h2 class="text-xl font-bold mb-2">Pompes aujourd'hui : <?= $pompeJour ?></h2>
+        <form method="POST">
+          <button name="reset_pompe" type="submit" class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-4 rounded-lg transition transform hover:scale-[1.02]">
+            Réinitialiser Pompes
+          </button>
+        </form>
+      </div>
+
+      <!-- Bloc Abdos -->
+      <div class="dashboard-card p-6 rounded-2xl text-center">
+        <h2 class="text-xl font-bold mb-2">Abdos aujourd'hui : <?= $abdosJour ?></h2>
+        <form method="POST">
+          <button name="reset_abdos" type="submit" class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-4 rounded-lg transition transform hover:scale-[1.02]">
+            Réinitialiser Abdos
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Colonne de droite (formulaires) -->
+    <div class="space-y-8">
+      <!-- Formulaire Pompes -->
+      <div class="dashboard-card p-8 rounded-2xl">
+        <h2 class="text-xl font-bold mb-4 text-center">Ajouter des Pompes</h2>
         <form method="POST" class="space-y-4">
           <input type="number" name="pompe" min="1" placeholder="Nombre de pompes" required class="w-full p-3 rounded-lg bg-gray-800 text-white focus:outline-none">
-          <button type="submit" class="w-full bg-purple-700 hover:bg-purple-900 text-white font-bold py-3 px-4 rounded-lg">Ajouter</button>
+          <button type="submit" class="w-full bg-purple-700 hover:bg-purple-900 text-white font-bold py-3 px-4 rounded-lg transition transform hover:scale-[1.02]">
+            Ajouter
+          </button>
         </form>
       </div>
 
-      <div class="dashboard-card">
-        <h2 style="text-align:center;margin-bottom:.75rem;">Ajouter des Abdos</h2>
+      <!-- Formulaire Abdos -->
+      <div class="dashboard-card p-8 rounded-2xl">
+        <h2 class="text-xl font-bold mb-4 text-center">Ajouter des Abdos</h2>
         <form method="POST" class="space-y-4">
           <input type="number" name="abdos" min="1" placeholder="Nombre d'abdos" required class="w-full p-3 rounded-lg bg-gray-800 text-white focus:outline-none">
-          <button type="submit" class="w-full bg-purple-700 hover:bg-purple-900 text-white font-bold py-3 px-4 rounded-lg">Ajouter</button>
+          <button type="submit" class="w-full bg-purple-700 hover:bg-purple-900 text-white font-bold py-3 px-4 rounded-lg transition transform hover:scale-[1.02]">
+            Ajouter
+          </button>
         </form>
       </div>
-    </section>
+    </div>
 
-    <!-- Colonne aside (desktop) -->
-    <aside>
-      <div class="dashboard-card">
-        <h2 style="text-align:center;margin-bottom:.5rem;">Pompes aujourd'hui : <?= $pompeJour ?></h2>
-        <form method="POST">
-          <button name="reset_pompe" type="submit" class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg">Réinitialiser Pompes</button>
-        </form>
-      </div>
-
-      <div class="dashboard-card">
-        <h2 style="text-align:center;margin-bottom:.5rem;">Abdos aujourd'hui : <?= $abdosJour ?></h2>
-        <form method="POST">
-          <button name="reset_abdos" type="submit" class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg">Réinitialiser Abdos</button>
-        </form>
-      </div>
-    </aside>
   </main>
+
+  <script>
+    // Toggle menu mobile avec icônes ☰ et ✖
+    const btn = document.getElementById("menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const hamb = document.getElementById("hamburger");
+    const close = document.getElementById("close");
+
+    btn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("open");
+      hamb.classList.toggle("hidden");
+      close.classList.toggle("hidden");
+    });
+  </script>
 </body>
 </html>
