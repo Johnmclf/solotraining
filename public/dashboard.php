@@ -135,10 +135,34 @@ $pointsRestants = $nextRank ? $nextRank['points'] - $points : 0;
             background: rgba(30, 41, 59, 0.7);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(124, 58, 237, 0.3);
+            border-radius: 1rem;
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+        }
+        .dashboard-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 20px rgba(124, 58, 237, 0.25);
         }
         .user-rank-C {
             border: 2px solid #4ade80;
             box-shadow: 0 0 15px rgba(74, 222, 128, 0.5);
+        }
+
+        /* Desktop layout */
+        @media (min-width: 768px) {
+            main {
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+                gap: 2rem;
+            }
+            section {
+                grid-column: 1 / 2;
+            }
+            aside {
+                grid-column: 2 / 3;
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -151,10 +175,8 @@ $pointsRestants = $nextRank ? $nextRank['points'] - $points : 0;
                 <h1 class="text-2xl font-orbitron glow-text">SOLO TRAINING</h1>
             </div>
             
-            <div class="flex items-center space-x-6">
-                <div class="md:flex space-x-6">
-                    <a href="objectifs.php" class="text-gray-300 hover:text-white transition">Objectifs</a>
-                </div>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="objectifs.php" class="text-gray-300 hover:text-white transition">Objectifs</a>
                 <div class="flex items-center space-x-4">
                     <div title="<?= $points ?> points" class="w-10 h-10 rounded-full flex items-center justify-center font-bold border-2 <?= $rankColor ?>">
                         <?= $rank ?>
@@ -171,9 +193,9 @@ $pointsRestants = $nextRank ? $nextRank['points'] - $points : 0;
     </header>
 
     <!-- Dashboard Content -->
-    <main class="container mx-auto px-4 max-w-6xl py-12 grid md:grid-cols-2 gap-8">
-        <!-- Welcome Section -->
-        <section class="mb-12">
+    <main class="container mx-auto px-4 max-w-7xl py-12">
+        <!-- Colonne gauche -->
+        <section>
             <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8">
                 <div>
                     <h2 class="text-2xl font-orbitron glow-text mb-2">Bon retour, Chasseur</h2>
@@ -181,10 +203,10 @@ $pointsRestants = $nextRank ? $nextRank['points'] - $points : 0;
                 </div>
             </div>
 
-            <!-- Stats Cards -->
-            <div class="grid md:grid-cols-3 gap-6 mb-8">
+            <!-- Objectifs -->
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
                 <!-- Objectif Pompes -->
-                <div class="dashboard-card p-6 rounded-xl col-span-2 mb-6">
+                <div class="dashboard-card p-6">
                     <div class="flex justify-between items-center mb-4">
                         <h2 class="text-xl font-bold">Objectif Pompes</h2>
                         <span class="text-lg font-semibold <?= $pompePourcent >= 100 ? 'text-green-400' : 'text-white' ?>">
@@ -200,7 +222,7 @@ $pointsRestants = $nextRank ? $nextRank['points'] - $points : 0;
                 </div>
 
                 <!-- Objectif Abdos -->
-                <div class="dashboard-card p-6 rounded-xl col-span-2 mb-6">
+                <div class="dashboard-card p-6">
                     <div class="flex justify-between items-center mb-4">
                         <h2 class="text-xl font-bold">Objectif Abdos</h2>
                         <span class="text-lg font-semibold <?= $abdosPourcent >= 100 ? 'text-green-400' : 'text-white' ?>">
@@ -214,105 +236,89 @@ $pointsRestants = $nextRank ? $nextRank['points'] - $points : 0;
                         Voir les détails <i class="fas fa-arrow-right ml-2 text-xs"></i>
                     </a>
                 </div>
+            </div>
 
-                <!-- Carte Points -->
-                <div class="dashboard-card rounded-xl p-6 col-span-2 mb-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-lg font-bold flex items-center">
-                            <i class="fas fa-coins text-accent mr-2"></i>
-                            POINTS
-                        </h3>
-                        <span class="text-sm bg-accent/20 text-accent px-3 py-1 rounded-full">
-                            +<?= $pointsToday ?> aujourd'hui
-                        </span>
-                    </div>
-                    <div class="text-3xl font-bold mb-2"><?= $points ?></div>
-                </div>
-
-                <!-- Carte Combo -->
-                <div class="dashboard-card rounded-xl p-6 col-span-2 mb-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-lg font-bold flex items-center">
-                            <i class="fas fa-fire text-accent mr-2"></i>
-                            COMBO
-                        </h3>
-                    </div>
-                    <div class="text-3xl font-bold mb-2">x <?= $combo ?></div>
-                </div>
-
-                <!-- Carte Totaux -->
-                <div class="dashboard-card rounded-xl p-6 col-span-2 mb-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-lg font-bold flex items-center">
-                            <i class="fas fa-dumbbell text-accent mr-2"></i>
-                            TOTAL DES EXERCICES
-                        </h3>
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <div class="text-gray-400 text-sm">Pompes au total</div>
-                            <div class="text-2xl font-semibold"><?= $totalPompe ?></div>
-                        </div>
-                        <div>
-                            <div class="text-gray-400 text-sm">Abdos au total</div>
-                            <div class="text-2xl font-semibold"><?= $totalAbdos ?></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Carte Prochain Rang -->
-                <div class="dashboard-card rounded-xl p-6 col-span-2 mb-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-lg font-bold flex items-center">
-                            <i class="fas fa-trophy text-accent mr-2"></i>
-                            PROCHAIN RANG
-                        </h3>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <!-- Icône du prochain rang -->
-                        <?php if ($nextRank): ?>
-                            <div title="<?= $nextRank['name'] ?> (<?= $nextRank['points'] ?> pts)" 
-                                class="w-12 h-12 rounded-full flex items-center justify-center font-bold border-2 <?= $nextRank['color'] ?>">
-                                <?= $nextRank['name'] ?>
-                            </div>
-                        <?php else: ?>
-                            <div class="text-sm text-gray-400">Rang maximum atteint</div>
-                        <?php endif; ?>
-
-                        <!-- Points restants -->
-                        <?php if ($nextRank): ?>
-                            <div>
-                                <div class="text-gray-400 text-sm">Points restants</div>
-                                <div class="text-2xl font-semibold"><?= $pointsRestants ?></div>
-                            </div>
-                        <?php endif; ?>
-                    </div>
-                </div>
-
-                <!-- Moyenne des 7 derniers jours -->
-                <div class="dashboard-card rounded-xl p-6 col-span-2 mb-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-lg font-bold flex items-center">
-                            <i class="fas fa-calendar-week text-accent mr-2"></i>
-                            Moyenne sur 7 jours
-                        </h3>
-                    </div>
-                    <div class="text-2xl font-semibold text-white">
-                        <?= $moyenne7jours ?> points par jour
-                    </div>
-                </div>
-
-                <!-- Pompes Chart -->
-                <div class="dashboard-card rounded-xl p-6 col-span-2 mb-6">
-                    <h3 class="text-lg font-bold mb-4 flex items-center">
-                        <i class="fas fa-chart-bar text-accent mr-2"></i>
-                        Diagramme du total de points (7 derniers jours)
-                    </h3>
-                    <canvas id="pointsChart"></canvas>
-                </div>
-
+            <!-- Graphiques -->
+            <div class="dashboard-card p-6 mb-8">
+                <h3 class="text-lg font-bold mb-4 flex items-center">
+                    <i class="fas fa-chart-bar text-accent mr-2"></i>
+                    Diagramme du total de points (7 derniers jours)
+                </h3>
+                <canvas id="pointsChart"></canvas>
             </div>
         </section>
+
+        <!-- Colonne droite -->
+        <aside>
+            <div class="dashboard-card p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-bold flex items-center">
+                        <i class="fas fa-coins text-accent mr-2"></i>
+                        POINTS
+                    </h3>
+                    <span class="text-sm bg-accent/20 text-accent px-3 py-1 rounded-full">
+                        +<?= $pointsToday ?> aujourd'hui
+                    </span>
+                </div>
+                <div class="text-3xl font-bold mb-2"><?= $points ?></div>
+            </div>
+
+            <div class="dashboard-card p-6">
+                <h3 class="text-lg font-bold flex items-center mb-2">
+                    <i class="fas fa-fire text-accent mr-2"></i>
+                    COMBO
+                </h3>
+                <div class="text-3xl font-bold">x <?= $combo ?></div>
+            </div>
+
+            <div class="dashboard-card p-6">
+                <h3 class="text-lg font-bold flex items-center mb-4">
+                    <i class="fas fa-dumbbell text-accent mr-2"></i>
+                    TOTAL DES EXERCICES
+                </h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <div class="text-gray-400 text-sm">Pompes au total</div>
+                        <div class="text-2xl font-semibold"><?= $totalPompe ?></div>
+                    </div>
+                    <div>
+                        <div class="text-gray-400 text-sm">Abdos au total</div>
+                        <div class="text-2xl font-semibold"><?= $totalAbdos ?></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-card p-6">
+                <h3 class="text-lg font-bold flex items-center mb-4">
+                    <i class="fas fa-trophy text-accent mr-2"></i>
+                    PROCHAIN RANG
+                </h3>
+                <div class="flex items-center gap-4">
+                    <?php if ($nextRank): ?>
+                        <div title="<?= $nextRank['name'] ?> (<?= $nextRank['points'] ?> pts)" 
+                            class="w-12 h-12 rounded-full flex items-center justify-center font-bold border-2 <?= $nextRank['color'] ?>">
+                            <?= $nextRank['name'] ?>
+                        </div>
+                        <div>
+                            <div class="text-gray-400 text-sm">Points restants</div>
+                            <div class="text-2xl font-semibold"><?= $pointsRestants ?></div>
+                        </div>
+                    <?php else: ?>
+                        <div class="text-sm text-gray-400">Rang maximum atteint</div>
+                    <?php endif; ?>
+                </div>
+            </div>
+
+            <div class="dashboard-card p-6">
+                <h3 class="text-lg font-bold flex items-center mb-2">
+                    <i class="fas fa-calendar-week text-accent mr-2"></i>
+                    Moyenne sur 7 jours
+                </h3>
+                <div class="text-2xl font-semibold text-white">
+                    <?= $moyenne7jours ?> points / jour
+                </div>
+            </div>
+        </aside>
     </main>
 
     <script>
@@ -347,32 +353,18 @@ $pointsRestants = $nextRank ? $nextRank['points'] - $points : 0;
             options: {
                 scales: {
                     x: {
-                        grid: {
-                            display: false
-                        },
-                        ticks: {
-                            color: 'white'
-                        },
-                        border: {
-                            color: 'white'
-                        }
+                        grid: { display: false },
+                        ticks: { color: 'white' },
+                        border: { color: 'white' }
                     },
                     y: {
-                        grid: {
-                            display: false
-                        },
-                        ticks: {
-                            color: 'white'
-                        },
-                        border: {
-                            color: 'white'
-                        }
+                        grid: { display: false },
+                        ticks: { color: 'white' },
+                        border: { color: 'white' }
                     }
                 },
                 plugins: {
-                    legend: {
-                        display: false
-                    }
+                    legend: { display: false }
                 }
             }
         };
@@ -380,3 +372,4 @@ $pointsRestants = $nextRank ? $nextRank['points'] - $points : 0;
         new Chart(ctx, config);
     </script>
 </body>
+</html>
