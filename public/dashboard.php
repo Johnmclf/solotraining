@@ -149,10 +149,6 @@ $pointsRestants = $nextRank ? $nextRank['points'] - $points : 0;
       margin-bottom: 1rem; /* mobile spacing */
       transition: transform .22s ease, box-shadow .28s ease;
     }
-    .dashboard-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 8px 20px rgba(124,58,237,0.18);
-    }
 
     header { position: relative; z-index: 40; background: var(--header-bg); border-bottom: 1px solid rgba(124,58,237,0.08); }
     nav.container { display:flex; align-items:center; justify-content:space-between; gap:1rem; }

@@ -148,136 +148,153 @@ if ($points < 1000) {
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Objectifs - Solo Training</title>
-    <script src="./asset/tailwind.js"></script>
-    <link href="./asset/googleapis" rel="stylesheet">
-    <link rel="stylesheet" href="asset/style.css">
-    <link rel="shortcut icon" href="./asset/img/iconPage.jpg" type="image/x-icon">
-    <style>
-        body {
-            background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
-            color: #e2e8f0;
-        }
-        .glow-text {
-            text-shadow: 0 0 5px rgba(124, 58, 237, 0.7);
-        }
-        .rank-progress {
-            background: linear-gradient(90deg, #7c3aed 0%, #4f46e5 100%);
-            box-shadow: 0 0 10px rgba(124, 58, 237, 0.5);
-        }
-        .dashboard-card {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(124, 58, 237, 0.3);
-        }
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Objectifs - Solo Training</title>
+  <script src="./asset/tailwind.js"></script>
+  <link href="./asset/googleapis" rel="stylesheet">
+  <link rel="stylesheet" href="asset/style.css">
+  <link rel="shortcut icon" href="./asset/img/iconPage.jpg" type="image/x-icon">
+  <style>
+    body {
+      background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
+      color: #e2e8f0;
+    }
+    .glow-text {
+      text-shadow: 0 0 5px rgba(124, 58, 237, 0.7);
+    }
+    .dashboard-card {
+      background: rgba(30, 41, 59, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(124, 58, 237, 0.3);
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+    .rank-progress {
+      background: linear-gradient(90deg, #7c3aed 0%, #4f46e5 100%);
+      box-shadow: 0 0 10px rgba(124, 58, 237, 0.5);
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  </style>
 </head>
 <body class="font-roboto min-h-screen">
-    <!-- Header -->
-    <header class="bg-primary border-b border-accent/20">
-        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <i class="fas fa-fire text-accent text-2xl"></i>
-                <h1 class="text-2xl font-orbitron glow-text">SOLO TRAINING</h1>
-            </div>
-            <div class="flex items-center space-x-6">
-                <div class="md:flex space-x-6">
-                    <a href="dashboard.php" class="text-gray-300 hover:text-white transition">Statistiques</a>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <div title="<?= $points ?> points" class="w-10 h-10 rounded-full flex items-center justify-center font-bold border-2 <?= $rankColor ?>">
-                        <?= $rank ?>
-                    </div>
-                    <a href="index.html" class="text-gray-300 hover:text-white transition">
-                        <img src="./asset/img/iconExit.png"  class="w-12 h-9 opacity-70 hover:opacity-100 transition duration-200 px-2" alt="EXIT">
-                    </a>
-                </div>
-            </div>
-            <button class="md:hidden text-gray-300">
-                <i class="fas fa-bars text-xl"></i>
-            </button>
-        </nav>
-    </header>
-
-    <!-- Formulaires + Objectifs -->
-    <main class="container mx-auto px-4 py-12 grid md:grid-cols-2 gap-8">
-
-        <!-- Objectif Pompes -->
-        <div class="dashboard-card p-6 rounded-xl col-span-2 max-w-3xl">
-            <div class="flex justify-between items-center mb-4">
-                <h2 class="text-xl font-bold">Objectif Pompes</h2>
-                <span class="text-lg font-semibold <?= $pompePourcent >= 100 ? 'text-green-400' : 'text-white' ?>">
-                    <?= $pompeStatus ?>
-                </span>
-            </div>
-            <div class="w-full bg-gray-700 rounded-full h-6 overflow-hidden">
-                <div class="<?= $pompeColor ?> h-full transition-all" style="width: <?= $pompePourcent ?>%;"></div>
-            </div>
+  <!-- Header -->
+  <header class="bg-primary border-b border-accent/20">
+    <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <i class="fas fa-fire text-accent text-2xl"></i>
+        <h1 class="text-2xl font-orbitron glow-text">SOLO TRAINING</h1>
+      </div>
+      <div class="hidden md:flex items-center space-x-6">
+        <a href="dashboard.php" class="text-gray-300 hover:text-white transition">Statistiques</a>
+        <div class="flex items-center space-x-4">
+          <div title="<?= $points ?> points" class="w-10 h-10 rounded-full flex items-center justify-center font-bold border-2 <?= $rankColor ?>">
+            <?= $rank ?>
+          </div>
+          <a href="index.html" class="text-gray-300 hover:text-white transition">
+            <img src="./asset/img/iconExit.png" class="w-12 h-9 opacity-70 hover:opacity-100 transition duration-200 px-2" alt="EXIT">
+          </a>
         </div>
+      </div>
+      <!-- Bouton mobile -->
+      <button id="menu-btn" class="md:hidden text-gray-300 focus:outline-none">
+        <i class="fas fa-bars text-xl"></i>
+      </button>
+    </nav>
+    <!-- Menu mobile -->
+    <div id="mobile-menu" class="hidden md:hidden px-4 pb-4">
+      <a href="dashboard.php" class="block py-2 text-gray-300 hover:text-white">Statistiques</a>
+      <a href="index.html" class="block py-2 text-gray-300 hover:text-white">Quitter</a>
+    </div>
+  </header>
 
-        <!-- Objectif Abdos -->
-        <div class="dashboard-card p-6 rounded-xl col-span-2 max-w-3xl">
-            <div class="flex justify-between items-center mb-4">
-                <h2 class="text-xl font-bold">Objectif Abdos</h2>
-                <span class="text-lg font-semibold <?= $abdosPourcent >= 100 ? 'text-green-400' : 'text-white' ?>">
-                    <?= $abdosStatus ?>
-                </span>
-            </div>
-            <div class="w-full bg-gray-700 rounded-full h-6 overflow-hidden">
-                <div class="<?= $abdosColor ?> h-full transition-all" style="width: <?= $abdosPourcent ?>%;"></div>
-            </div>
+  <!-- Contenu -->
+  <main class="container mx-auto px-4 py-12 grid gap-8 md:grid-cols-3">
+    
+    <!-- Colonne de gauche (progress bars) -->
+    <div class="md:col-span-2 space-y-8">
+      <!-- Objectif Pompes -->
+      <div class="dashboard-card p-6 rounded-2xl">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-xl font-bold">Objectif Pompes</h2>
+          <span class="text-lg font-semibold <?= $pompePourcent >= 100 ? 'text-green-400' : 'text-white' ?>">
+            <?= $pompeStatus ?>
+          </span>
         </div>
+        <div class="w-full bg-gray-700 rounded-full h-6 overflow-hidden">
+          <div class="<?= $pompeColor ?> h-full transition-all" style="width: <?= $pompePourcent ?>%;"></div>
+        </div>
+      </div>
 
-        <!-- Formulaire Pompes -->
-        <div class="dashboard-card p-8 rounded-xl col-span-2 max-w-3xl">
-            <h2 class="text-xl font-bold mb-4 text-center">Ajouter des Pompes</h2>
-            <form method="POST" class="space-y-4">
-                <input type="number" name="pompe" min="1" placeholder="Nombre de pompes" required class="w-full p-3 rounded-lg bg-gray-800 text-white focus:outline-none">
-                <button type="submit" class="w-full bg-purple-700 hover:bg-purple-900 text-white font-bold py-3 px-4 rounded-lg transition transform hover:scale-[1.02]">
-                    Ajouter
-                </button>
-            </form>
+      <!-- Objectif Abdos -->
+      <div class="dashboard-card p-6 rounded-2xl">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-xl font-bold">Objectif Abdos</h2>
+          <span class="text-lg font-semibold <?= $abdosPourcent >= 100 ? 'text-green-400' : 'text-white' ?>">
+            <?= $abdosStatus ?>
+          </span>
         </div>
+        <div class="w-full bg-gray-700 rounded-full h-6 overflow-hidden">
+          <div class="<?= $abdosColor ?> h-full transition-all" style="width: <?= $abdosPourcent ?>%;"></div>
+        </div>
+      </div>
 
-        <!-- Formulaire Abdos -->
-        <div class="dashboard-card p-8 rounded-xl col-span-2 max-w-3xl">
-            <h2 class="text-xl font-bold mb-4 text-center">Ajouter des Abdos</h2>
-            <form method="POST" class="space-y-4">
-                <input type="number" name="abdos" min="1" placeholder="Nombre d'abdos" required class="w-full p-3 rounded-lg bg-gray-800 text-white focus:outline-none">
-                <button type="submit" class="w-full bg-purple-700 hover:bg-purple-900 text-white font-bold py-3 px-4 rounded-lg transition transform hover:scale-[1.02]">
-                    Ajouter
-                </button>
-            </form>
-        </div>
+      <!-- Bloc Pompes -->
+      <div class="dashboard-card p-6 rounded-2xl text-center">
+        <h2 class="text-xl font-bold mb-2">Pompes aujourd'hui : <?= $pompeJour ?></h2>
+        <form method="POST">
+          <button name="reset_pompe" type="submit" class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-4 rounded-lg transition transform hover:scale-[1.02]">
+            Réinitialiser Pompes
+          </button>
+        </form>
+      </div>
 
-        <!-- Bloc Pompes -->
-        <div class="dashboard-card p-6 rounded-xl col-span-2 max-w-3xl">
-            <h2 class="text-xl font-bold mb-2 text-center">Pompes aujourd'hui : <?= $pompeJour ?></h2>
-            <form method="POST">
-                <button name="reset_pompe" type="submit"
-                    class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-4 rounded-lg transition transform hover:scale-[1.02]">
-                    Réinitialiser Pompes
-                </button>
-            </form>
-        </div>
+      <!-- Bloc Abdos -->
+      <div class="dashboard-card p-6 rounded-2xl text-center">
+        <h2 class="text-xl font-bold mb-2">Abdos aujourd'hui : <?= $abdosJour ?></h2>
+        <form method="POST">
+          <button name="reset_abdos" type="submit" class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-4 rounded-lg transition transform hover:scale-[1.02]">
+            Réinitialiser Abdos
+          </button>
+        </form>
+      </div>
+    </div>
 
-        <!-- Bloc Abdos -->
-        <div class="dashboard-card p-6 rounded-xl col-span-2 max-w-3xl">
-            <h2 class="text-xl font-bold mb-2 text-center">Abdos aujourd'hui : <?= $abdosJour ?></h2>
-            <form method="POST">
-                <button name="reset_abdos" type="submit"
-                    class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-4 rounded-lg transition transform hover:scale-[1.02]">
-                    Réinitialiser Abdos
-                </button>
-            </form>
-        </div>
-    </main>
+    <!-- Colonne de droite (formulaires) -->
+    <div class="space-y-8">
+      <!-- Formulaire Pompes -->
+      <div class="dashboard-card p-8 rounded-2xl">
+        <h2 class="text-xl font-bold mb-4 text-center">Ajouter des Pompes</h2>
+        <form method="POST" class="space-y-4">
+          <input type="number" name="pompe" min="1" placeholder="Nombre de pompes" required class="w-full p-3 rounded-lg bg-gray-800 text-white focus:outline-none">
+          <button type="submit" class="w-full bg-purple-700 hover:bg-purple-900 text-white font-bold py-3 px-4 rounded-lg transition transform hover:scale-[1.02]">
+            Ajouter
+          </button>
+        </form>
+      </div>
+
+      <!-- Formulaire Abdos -->
+      <div class="dashboard-card p-8 rounded-2xl">
+        <h2 class="text-xl font-bold mb-4 text-center">Ajouter des Abdos</h2>
+        <form method="POST" class="space-y-4">
+          <input type="number" name="abdos" min="1" placeholder="Nombre d'abdos" required class="w-full p-3 rounded-lg bg-gray-800 text-white focus:outline-none">
+          <button type="submit" class="w-full bg-purple-700 hover:bg-purple-900 text-white font-bold py-3 px-4 rounded-lg transition transform hover:scale-[1.02]">
+            Ajouter
+          </button>
+        </form>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    // Toggle menu mobile
+    document.getElementById("menu-btn").addEventListener("click", function () {
+      document.getElementById("mobile-menu").classList.toggle("hidden");
+    });
+  </script>
 </body>
 </html>
