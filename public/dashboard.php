@@ -185,13 +185,13 @@ $pointsRestants = $nextRank ? $nextRank['points'] - $points : 0;
       </div>
 
       <!-- Bouton menu mobile -->
-      <button id="menuBtn" class="md:hidden text-white-300">
-        <i class="fas fa-bars text-xl"></i>
+      <button id="menuBtn" class="md:hidden text-white">
+        <i class="fas fa-bars text-2xl"></i>
       </button>
     </nav>
 
     <!-- Menu mobile -->
-    <div id="mobileMenu" class="hidden md:hidden flex-col bg-slate-900 border-t border-accent/20 px-4 py-3 space-y-3">
+    <div id="mobileMenu" class="hidden md:hidden flex-col bg-slate-800 border-t border-accent/20 px-4 py-3 space-y-3">
       <a href="objectifs.php" class="block text-gray-300 hover:text-white">Objectifs</a>
       <div class="flex items-center space-x-4">
         <div title="<?= $points ?> points" class="w-10 h-10 rounded-full flex items-center justify-center font-bold border-2 <?= $rankColor ?>">
