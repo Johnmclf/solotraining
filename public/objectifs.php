@@ -265,6 +265,31 @@ if ($points < 1000) {
         </div>
       </div>
 
+      <!-- Colonne de droite (formulaires) -->
+      <div class="space-y-8">
+        <!-- Formulaire Pompes -->
+        <div class="dashboard-card p-8 rounded-2xl">
+          <h2 class="text-xl font-bold mb-4 text-center">Ajouter des Pompes</h2>
+          <form method="POST" class="space-y-4">
+            <input type="number" name="pompe" min="1" placeholder="Nombre de pompes" required class="w-full p-3 rounded-lg bg-gray-800 text-white focus:outline-none">
+            <button type="submit" class="w-full bg-purple-700 hover:bg-purple-900 text-white font-bold py-3 px-4 rounded-lg transition transform hover:scale-[1.02]">
+              Ajouter
+            </button>
+          </form>
+        </div>
+
+        <!-- Formulaire Abdos -->
+        <div class="dashboard-card p-8 rounded-2xl">
+          <h2 class="text-xl font-bold mb-4 text-center">Ajouter des Abdos</h2>
+          <form method="POST" class="space-y-4">
+            <input type="number" name="abdos" min="1" placeholder="Nombre d'abdos" required class="w-full p-3 rounded-lg bg-gray-800 text-white focus:outline-none">
+            <button type="submit" class="w-full bg-purple-700 hover:bg-purple-900 text-white font-bold py-3 px-4 rounded-lg transition transform hover:scale-[1.02]">
+              Ajouter
+            </button>
+          </form>
+        </div>
+      </div>
+
       <!-- Bloc Pompes -->
       <div class="dashboard-card p-6 rounded-2xl text-center">
         <h2 class="text-xl font-bold mb-2">Pompes aujourd'hui : <?= $pompeJour ?></h2>
@@ -281,31 +306,6 @@ if ($points < 1000) {
         <form method="POST">
           <button name="reset_abdos" type="submit" class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-4 rounded-lg transition transform hover:scale-[1.02]">
             Réinitialiser Abdos
-          </button>
-        </form>
-      </div>
-    </div>
-
-    <!-- Colonne de droite (formulaires) -->
-    <div class="space-y-8">
-      <!-- Formulaire Pompes -->
-      <div class="dashboard-card p-8 rounded-2xl">
-        <h2 class="text-xl font-bold mb-4 text-center">Ajouter des Pompes</h2>
-        <form method="POST" class="space-y-4">
-          <input type="number" name="pompe" min="1" placeholder="Nombre de pompes" required class="w-full p-3 rounded-lg bg-gray-800 text-white focus:outline-none">
-          <button type="submit" class="w-full bg-purple-700 hover:bg-purple-900 text-white font-bold py-3 px-4 rounded-lg transition transform hover:scale-[1.02]">
-            Ajouter
-          </button>
-        </form>
-      </div>
-
-      <!-- Formulaire Abdos -->
-      <div class="dashboard-card p-8 rounded-2xl">
-        <h2 class="text-xl font-bold mb-4 text-center">Ajouter des Abdos</h2>
-        <form method="POST" class="space-y-4">
-          <input type="number" name="abdos" min="1" placeholder="Nombre d'abdos" required class="w-full p-3 rounded-lg bg-gray-800 text-white focus:outline-none">
-          <button type="submit" class="w-full bg-purple-700 hover:bg-purple-900 text-white font-bold py-3 px-4 rounded-lg transition transform hover:scale-[1.02]">
-            Ajouter
           </button>
         </form>
       </div>
