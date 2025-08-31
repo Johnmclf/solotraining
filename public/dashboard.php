@@ -185,7 +185,7 @@ $pointsRestants = $nextRank ? $nextRank['points'] - $points : 0;
       </div>
 
       <!-- Bouton menu mobile -->
-      <button id="menuBtn" class="md:hidden text-gray-300">
+      <button id="menuBtn" class="md:hidden text-white-300">
         <i class="fas fa-bars text-xl"></i>
       </button>
     </nav>
