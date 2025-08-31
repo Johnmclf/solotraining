@@ -113,257 +113,257 @@ $pointsRestants = $nextRank ? $nextRank['points'] - $points : 0;
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tableau de bord - Solo Training</title>
-    <script src="./asset/tailwind.js"></script>
-    <script src="./asset/chart.js"></script>
-    <link href="./asset/googleapis" rel="stylesheet">
-    <style>
-        body {
-            background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
-            color: #e2e8f0;
-        }
-        .glow-text {
-            text-shadow: 0 0 5px rgba(124, 58, 237, 0.7);
-        }
-        .dashboard-card {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(124, 58, 237, 0.3);
-            border-radius: 1rem;
-            margin-bottom: 1rem; /* espace entre les cartes sur mobile */
-            transition: transform 0.2s ease, box-shadow 0.3s ease;
-        }
-        .dashboard-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 8px 20px rgba(124, 58, 237, 0.25);
-        }
-
-        /* Desktop layout */
-        @media (min-width: 768px) {
-            main {
-                display: grid;
-                grid-template-columns: 2fr 1fr;
-                gap: 2rem;
-            }
-            section {
-                grid-column: 1 / 2;
-            }
-            aside {
-                grid-column: 2 / 3;
-                display: flex;
-                flex-direction: column;
-                gap: 1.5rem;
-            }
-            .dashboard-card {
-                margin-bottom: 0; /* reset car desktop gère avec gap */
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tableau de bord - Solo Training</title>
+  <script src="./asset/tailwind.js"></script>
+  <script src="./asset/chart.js"></script>
+  <link href="./asset/googleapis" rel="stylesheet">
+  <style>
+    body {
+      background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
+      color: #e2e8f0;
+    }
+    .glow-text {
+      text-shadow: 0 0 5px rgba(124, 58, 237, 0.7);
+    }
+    .dashboard-card {
+      background: rgba(30, 41, 59, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(124, 58, 237, 0.3);
+      border-radius: 1rem;
+      margin-bottom: 1rem; /* espace entre les cartes sur mobile */
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+    .dashboard-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 20px rgba(124, 58, 237, 0.25);
+    }
+    /* Desktop layout */
+    @media (min-width: 768px) {
+      main {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 2rem;
+      }
+      section {
+        grid-column: 1 / 2;
+      }
+      aside {
+        grid-column: 2 / 3;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .dashboard-card {
+        margin-bottom: 0;
+      }
+    }
+  </style>
 </head>
 <body class="font-roboto min-h-screen">
-    <!-- Header -->
-    <header class="bg-primary border-b border-accent/20">
-        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <i class="fas fa-fire text-accent text-2xl"></i>
-                <h1 class="text-2xl font-orbitron glow-text">SOLO TRAINING</h1>
-            </div>
-            
-            <!-- Menu desktop -->
-            <div class="hidden md:flex items-center space-x-6">
-                <a href="objectifs.php" class="text-gray-300 hover:text-white transition">Objectifs</a>
-                <div class="flex items-center space-x-4">
-                    <div title="<?= $points ?> points" class="w-10 h-10 rounded-full flex items-center justify-center font-bold border-2 <?= $rankColor ?>">
-                        <?= $rank ?>
-                    </div>
-                    <a href="index.html" class="text-gray-300 hover:text-white transition">
-                        <img src="./asset/img/iconExit.png"  class="w-12 h-9 opacity-70 hover:opacity-100 transition duration-200 px-2" alt="EXIT">
-                    </a>
-                </div>
-            </div>
+  <!-- Header -->
+  <header class="bg-primary border-b border-accent/20">
+    <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <!-- Logo -->
+      <div class="flex items-center space-x-2">
+        <i class="fas fa-fire text-accent text-2xl"></i>
+        <h1 class="text-2xl font-orbitron glow-text">SOLO TRAINING</h1>
+      </div>
 
-            <!-- Bouton mobile -->
-            <button id="menuBtn" class="md:hidden text-gray-300">
-                <i class="fas fa-bars text-xl"></i>
-            </button>
-        </nav>
-
-        <!-- Menu mobile -->
-        <div id="mobileMenu" class="hidden md:hidden flex-col bg-slate-900 border-t border-accent/20 px-4 py-3 space-y-3">
-            <a href="objectifs.php" class="block text-gray-300 hover:text-white">Objectifs</a>
-            <div class="flex items-center space-x-4">
-                <div title="<?= $points ?> points" class="w-10 h-10 rounded-full flex items-center justify-center font-bold border-2 <?= $rankColor ?>">
-                    <?= $rank ?>
-                </div>
-                <a href="index.html" class="text-gray-300 hover:text-white">
-                    <img src="./asset/img/iconExit.png" class="w-12 h-9 opacity-70 hover:opacity-100 transition duration-200 px-2" alt="EXIT">
-                </a>
-            </div>
+      <!-- Menu desktop -->
+      <div class="hidden md:flex items-center space-x-6">
+        <a href="objectifs.php" class="text-gray-300 hover:text-white transition">Objectifs</a>
+        <div class="flex items-center space-x-4">
+          <div title="<?= $points ?> points" class="w-10 h-10 rounded-full flex items-center justify-center font-bold border-2 <?= $rankColor ?>">
+            <?= $rank ?>
+          </div>
+          <a href="index.html" class="text-gray-300 hover:text-white transition">
+            <img src="./asset/img/iconExit.png"  class="w-12 h-9 opacity-70 hover:opacity-100 transition duration-200 px-2" alt="EXIT">
+          </a>
         </div>
-    </header>
+      </div>
 
-    <!-- Dashboard Content -->
-    <main class="container mx-auto px-4 max-w-7xl py-12">
-        <!-- Colonne gauche -->
-        <section>
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8">
-                <div>
-                    <h2 class="text-2xl font-orbitron glow-text mb-2">Bon retour, Chasseur</h2>
-                    <p class="text-gray-400">Votre progression aujourd'hui</p>
-                </div>
+      <!-- Bouton menu mobile -->
+      <button id="menuBtn" class="md:hidden text-gray-300">
+        <i class="fas fa-bars text-xl"></i>
+      </button>
+    </nav>
+
+    <!-- Menu mobile -->
+    <div id="mobileMenu" class="hidden md:hidden flex-col bg-slate-900 border-t border-accent/20 px-4 py-3 space-y-3">
+      <a href="objectifs.php" class="block text-gray-300 hover:text-white">Objectifs</a>
+      <div class="flex items-center space-x-4">
+        <div title="<?= $points ?> points" class="w-10 h-10 rounded-full flex items-center justify-center font-bold border-2 <?= $rankColor ?>">
+          <?= $rank ?>
+        </div>
+        <a href="index.html" class="text-gray-300 hover:text-white">
+          <img src="./asset/img/iconExit.png" class="w-12 h-9 opacity-70 hover:opacity-100 transition duration-200 px-2" alt="EXIT">
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Dashboard Content -->
+  <main class="container mx-auto px-4 max-w-7xl py-12">
+    <!-- Colonne gauche -->
+    <section>
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8">
+        <div>
+          <h2 class="text-2xl font-orbitron glow-text mb-2">Bon retour, Chasseur</h2>
+          <p class="text-gray-400">Votre progression aujourd'hui</p>
+        </div>
+      </div>
+
+      <!-- Objectifs -->
+      <div class="grid md:grid-cols-2 gap-6 mb-8">
+        <!-- Objectif Pompes -->
+        <div class="dashboard-card p-6">
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-bold">Objectif Pompes</h2>
+            <span class="text-lg font-semibold <?= $pompePourcent >= 100 ? 'text-green-400' : 'text-white' ?>">
+              <?= $pompeStatus ?>
+            </span>
+          </div>
+          <div class="w-full bg-gray-700 rounded-full h-6 overflow-hidden">
+            <div class="<?= $pompeColor ?> h-full transition-all" style="width: <?= $pompePourcent ?>%;"></div>
+          </div>
+          <a href="objectifs.php" class="text-accent hover:underline text-sm flex items-center mt-2">
+            Voir les détails <i class="fas fa-arrow-right ml-2 text-xs"></i>
+          </a>
+        </div>
+
+        <!-- Objectif Abdos -->
+        <div class="dashboard-card p-6">
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-bold">Objectif Abdos</h2>
+            <span class="text-lg font-semibold <?= $abdosPourcent >= 100 ? 'text-green-400' : 'text-white' ?>">
+              <?= $abdosStatus ?>
+            </span>
+          </div>
+          <div class="w-full bg-gray-700 rounded-full h-6 overflow-hidden">
+            <div class="<?= $abdosColor ?> h-full transition-all" style="width: <?= $abdosPourcent ?>%;"></div>
+          </div>
+          <a href="objectifs.php" class="text-accent hover:underline text-sm flex items-center mt-2">
+            Voir les détails <i class="fas fa-arrow-right ml-2 text-xs"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Graphiques -->
+      <div class="dashboard-card p-6 mb-8">
+        <h3 class="text-lg font-bold mb-4 flex items-center">
+          <i class="fas fa-chart-bar text-accent mr-2"></i>
+          Diagramme du total de points (7 derniers jours)
+        </h3>
+        <canvas id="pointsChart"></canvas>
+      </div>
+    </section>
+
+    <!-- Colonne droite -->
+    <aside>
+      <div class="dashboard-card p-6">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-lg font-bold flex items-center">
+            <i class="fas fa-coins text-accent mr-2"></i>
+            POINTS
+          </h3>
+          <span class="text-sm bg-accent/20 text-accent px-3 py-1 rounded-full">
+            +<?= $pointsToday ?> aujourd'hui
+          </span>
+        </div>
+        <div class="text-3xl font-bold mb-2"><?= $points ?></div>
+      </div>
+
+      <div class="dashboard-card p-6">
+        <h3 class="text-lg font-bold flex items-center mb-2">
+          <i class="fas fa-fire text-accent mr-2"></i>
+          COMBO
+        </h3>
+        <div class="text-3xl font-bold">x <?= $combo ?></div>
+      </div>
+
+      <div class="dashboard-card p-6">
+        <h3 class="text-lg font-bold flex items-center mb-4">
+          <i class="fas fa-dumbbell text-accent mr-2"></i>
+          TOTAL DES EXERCICES
+        </h3>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <div class="text-gray-400 text-sm">Pompes au total</div>
+            <div class="text-2xl font-semibold"><?= $totalPompe ?></div>
+          </div>
+          <div>
+            <div class="text-gray-400 text-sm">Abdos au total</div>
+            <div class="text-2xl font-semibold"><?= $totalAbdos ?></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-card p-6">
+        <h3 class="text-lg font-bold flex items-center mb-4">
+          <i class="fas fa-trophy text-accent mr-2"></i>
+          PROCHAIN RANG
+        </h3>
+        <div class="flex items-center gap-4">
+          <?php if ($nextRank): ?>
+            <div title="<?= $nextRank['name'] ?> (<?= $nextRank['points'] ?> pts)" 
+              class="w-12 h-12 rounded-full flex items-center justify-center font-bold border-2 <?= $nextRank['color'] ?>">
+              <?= $nextRank['name'] ?>
             </div>
-
-            <!-- Objectifs -->
-            <div class="grid md:grid-cols-2 gap-6 mb-8">
-                <!-- Objectif Pompes -->
-                <div class="dashboard-card p-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h2 class="text-xl font-bold">Objectif Pompes</h2>
-                        <span class="text-lg font-semibold <?= $pompePourcent >= 100 ? 'text-green-400' : 'text-white' ?>">
-                            <?= $pompeStatus ?>
-                        </span>
-                    </div>
-                    <div class="w-full bg-gray-700 rounded-full h-6 overflow-hidden">
-                        <div class="<?= $pompeColor ?> h-full transition-all" style="width: <?= $pompePourcent ?>%;"></div>
-                    </div>
-                    <a href="objectifs.php" class="text-accent hover:underline text-sm flex items-center mt-2">
-                        Voir les détails <i class="fas fa-arrow-right ml-2 text-xs"></i>
-                    </a>
-                </div>
-
-                <!-- Objectif Abdos -->
-                <div class="dashboard-card p-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h2 class="text-xl font-bold">Objectif Abdos</h2>
-                        <span class="text-lg font-semibold <?= $abdosPourcent >= 100 ? 'text-green-400' : 'text-white' ?>">
-                            <?= $abdosStatus ?>
-                        </span>
-                    </div>
-                    <div class="w-full bg-gray-700 rounded-full h-6 overflow-hidden">
-                        <div class="<?= $abdosColor ?> h-full transition-all" style="width: <?= $abdosPourcent ?>%;"></div>
-                    </div>
-                    <a href="objectifs.php" class="text-accent hover:underline text-sm flex items-center mt-2">
-                        Voir les détails <i class="fas fa-arrow-right ml-2 text-xs"></i>
-                    </a>
-                </div>
+            <div>
+              <div class="text-gray-400 text-sm">Points restants</div>
+              <div class="text-2xl font-semibold"><?= $pointsRestants ?></div>
             </div>
+          <?php else: ?>
+            <div class="text-sm text-gray-400">Rang maximum atteint</div>
+          <?php endif; ?>
+        </div>
+      </div>
 
-            <!-- Graphiques -->
-            <div class="dashboard-card p-6 mb-8">
-                <h3 class="text-lg font-bold mb-4 flex items-center">
-                    <i class="fas fa-chart-bar text-accent mr-2"></i>
-                    Diagramme du total de points (7 derniers jours)
-                </h3>
-                <canvas id="pointsChart"></canvas>
-            </div>
-        </section>
+      <div class="dashboard-card p-6">
+        <h3 class="text-lg font-bold flex items-center mb-2">
+          <i class="fas fa-calendar-week text-accent mr-2"></i>
+          Moyenne sur 7 jours
+        </h3>
+        <div class="text-2xl font-semibold text-white">
+          <?= $moyenne7jours ?> points / jour
+        </div>
+      </div>
+    </aside>
+  </main>
 
-        <!-- Colonne droite -->
-        <aside>
-            <div class="dashboard-card p-6">
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-lg font-bold flex items-center">
-                        <i class="fas fa-coins text-accent mr-2"></i>
-                        POINTS
-                    </h3>
-                    <span class="text-sm bg-accent/20 text-accent px-3 py-1 rounded-full">
-                        +<?= $pointsToday ?> aujourd'hui
-                    </span>
-                </div>
-                <div class="text-3xl font-bold mb-2"><?= $points ?></div>
-            </div>
+  <script>
+    // Menu mobile toggle
+    document.getElementById("menuBtn").addEventListener("click", () => {
+      document.getElementById("mobileMenu").classList.toggle("hidden");
+    });
 
-            <div class="dashboard-card p-6">
-                <h3 class="text-lg font-bold flex items-center mb-2">
-                    <i class="fas fa-fire text-accent mr-2"></i>
-                    COMBO
-                </h3>
-                <div class="text-3xl font-bold">x <?= $combo ?></div>
-            </div>
-
-            <div class="dashboard-card p-6">
-                <h3 class="text-lg font-bold flex items-center mb-4">
-                    <i class="fas fa-dumbbell text-accent mr-2"></i>
-                    TOTAL DES EXERCICES
-                </h3>
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <div class="text-gray-400 text-sm">Pompes au total</div>
-                        <div class="text-2xl font-semibold"><?= $totalPompe ?></div>
-                    </div>
-                    <div>
-                        <div class="text-gray-400 text-sm">Abdos au total</div>
-                        <div class="text-2xl font-semibold"><?= $totalAbdos ?></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="dashboard-card p-6">
-                <h3 class="text-lg font-bold flex items-center mb-4">
-                    <i class="fas fa-trophy text-accent mr-2"></i>
-                    PROCHAIN RANG
-                </h3>
-                <div class="flex items-center gap-4">
-                    <?php if ($nextRank): ?>
-                        <div title="<?= $nextRank['name'] ?> (<?= $nextRank['points'] ?> pts)" 
-                            class="w-12 h-12 rounded-full flex items-center justify-center font-bold border-2 <?= $nextRank['color'] ?>">
-                            <?= $nextRank['name'] ?>
-                        </div>
-                        <div>
-                            <div class="text-gray-400 text-sm">Points restants</div>
-                            <div class="text-2xl font-semibold"><?= $pointsRestants ?></div>
-                        </div>
-                    <?php else: ?>
-                        <div class="text-sm text-gray-400">Rang maximum atteint</div>
-                    <?php endif; ?>
-                </div>
-            </div>
-
-            <div class="dashboard-card p-6">
-                <h3 class="text-lg font-bold flex items-center mb-2">
-                    <i class="fas fa-calendar-week text-accent mr-2"></i>
-                    Moyenne sur 7 jours
-                </h3>
-                <div class="text-2xl font-semibold text-white">
-                    <?= $moyenne7jours ?> points / jour
-                </div>
-            </div>
-        </aside>
-    </main>
-
-    <script>
-        // Menu mobile toggle
-        document.getElementById("menuBtn").addEventListener("click", () => {
-            document.getElementById("mobileMenu").classList.toggle("hidden");
-        });
-
-        // Chart
-        const ctx = document.getElementById('pointsChart').getContext('2d');
-        const data = {
-            labels: ['Jour 1', 'Jour 2', 'Jour 3', 'Jour 4', 'Jour 5', 'Jour 6', 'Jour 7'],
-            datasets: [{
-                label: 'Points',
-                data: [
-                    <?= $user['jour1'] ?>,
-                    <?= $user['jour2'] ?>,
-                    <?= $user['jour3'] ?>,
-                    <?= $user['jour4'] ?>,
-                    <?= $user['jour5'] ?>,
-                    <?= $user['jour6'] ?>,
-                    <?= $user['jour7'] ?>
-                ],
-                pointStyle: 'circle',
-                pointRadius: 6,
-                pointBackgroundColor: 'white',
-                pointBorderColor: 'rgb(255, 255, 255)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                tension: 0.3
-            }]
-        };
-        new Chart(ctx, { type: 'line', data: data, options: { plugins:{ legend:{ display:false } } } });
-    </script>
+    // Chart
+    const ctx = document.getElementById('pointsChart').getContext('2d');
+    const data = {
+      labels: ['Jour 1','Jour 2','Jour 3','Jour 4','Jour 5','Jour 6','Jour 7'],
+      datasets: [{
+        label: 'Points',
+        data: [
+          <?= $user['jour1'] ?>,
+          <?= $user['jour2'] ?>,
+          <?= $user['jour3'] ?>,
+          <?= $user['jour4'] ?>,
+          <?= $user['jour5'] ?>,
+          <?= $user['jour6'] ?>,
+          <?= $user['jour7'] ?>
+        ],
+        pointStyle: 'circle',
+        pointRadius: 6,
+        pointBackgroundColor: 'white',
+        pointBorderColor: 'rgb(255, 255, 255)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        tension: 0.3
+      }]
+    };
+    new Chart(ctx, { type: 'line', data: data, options: { plugins:{ legend:{ display:false } } } });
+  </script>
 </body>
 </html>
