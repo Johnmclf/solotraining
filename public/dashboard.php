@@ -127,24 +127,17 @@ $pointsRestants = $nextRank ? $nextRank['points'] - $points : 0;
         .glow-text {
             text-shadow: 0 0 5px rgba(124, 58, 237, 0.7);
         }
-        .rank-progress {
-            background: linear-gradient(90deg, #7c3aed 0%, #4f46e5 100%);
-            box-shadow: 0 0 10px rgba(124, 58, 237, 0.5);
-        }
         .dashboard-card {
             background: rgba(30, 41, 59, 0.7);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(124, 58, 237, 0.3);
             border-radius: 1rem;
+            margin-bottom: 1rem; /* espace entre les cartes sur mobile */
             transition: transform 0.2s ease, box-shadow 0.3s ease;
         }
         .dashboard-card:hover {
             transform: translateY(-6px);
             box-shadow: 0 8px 20px rgba(124, 58, 237, 0.25);
-        }
-        .user-rank-C {
-            border: 2px solid #4ade80;
-            box-shadow: 0 0 15px rgba(74, 222, 128, 0.5);
         }
 
         /* Desktop layout */
@@ -163,6 +156,9 @@ $pointsRestants = $nextRank ? $nextRank['points'] - $points : 0;
                 flex-direction: column;
                 gap: 1.5rem;
             }
+            .dashboard-card {
+                margin-bottom: 0; /* reset car desktop gère avec gap */
+            }
         }
     </style>
 </head>
@@ -175,6 +171,7 @@ $pointsRestants = $nextRank ? $nextRank['points'] - $points : 0;
                 <h1 class="text-2xl font-orbitron glow-text">SOLO TRAINING</h1>
             </div>
             
+            <!-- Menu desktop -->
             <div class="hidden md:flex items-center space-x-6">
                 <a href="objectifs.php" class="text-gray-300 hover:text-white transition">Objectifs</a>
                 <div class="flex items-center space-x-4">
@@ -186,10 +183,25 @@ $pointsRestants = $nextRank ? $nextRank['points'] - $points : 0;
                     </a>
                 </div>
             </div>
-            <button class="md:hidden text-gray-300">
+
+            <!-- Bouton mobile -->
+            <button id="menuBtn" class="md:hidden text-gray-300">
                 <i class="fas fa-bars text-xl"></i>
             </button>
         </nav>
+
+        <!-- Menu mobile -->
+        <div id="mobileMenu" class="hidden md:hidden flex-col bg-slate-900 border-t border-accent/20 px-4 py-3 space-y-3">
+            <a href="objectifs.php" class="block text-gray-300 hover:text-white">Objectifs</a>
+            <div class="flex items-center space-x-4">
+                <div title="<?= $points ?> points" class="w-10 h-10 rounded-full flex items-center justify-center font-bold border-2 <?= $rankColor ?>">
+                    <?= $rank ?>
+                </div>
+                <a href="index.html" class="text-gray-300 hover:text-white">
+                    <img src="./asset/img/iconExit.png" class="w-12 h-9 opacity-70 hover:opacity-100 transition duration-200 px-2" alt="EXIT">
+                </a>
+            </div>
+        </div>
     </header>
 
     <!-- Dashboard Content -->
@@ -322,8 +334,13 @@ $pointsRestants = $nextRank ? $nextRank['points'] - $points : 0;
     </main>
 
     <script>
-        const ctx = document.getElementById('pointsChart').getContext('2d');
+        // Menu mobile toggle
+        document.getElementById("menuBtn").addEventListener("click", () => {
+            document.getElementById("mobileMenu").classList.toggle("hidden");
+        });
 
+        // Chart
+        const ctx = document.getElementById('pointsChart').getContext('2d');
         const data = {
             labels: ['Jour 1', 'Jour 2', 'Jour 3', 'Jour 4', 'Jour 5', 'Jour 6', 'Jour 7'],
             datasets: [{
@@ -346,30 +363,7 @@ $pointsRestants = $nextRank ? $nextRank['points'] - $points : 0;
                 tension: 0.3
             }]
         };
-
-        const config = {
-            type: 'line',
-            data: data,
-            options: {
-                scales: {
-                    x: {
-                        grid: { display: false },
-                        ticks: { color: 'white' },
-                        border: { color: 'white' }
-                    },
-                    y: {
-                        grid: { display: false },
-                        ticks: { color: 'white' },
-                        border: { color: 'white' }
-                    }
-                },
-                plugins: {
-                    legend: { display: false }
-                }
-            }
-        };
-
-        new Chart(ctx, config);
+        new Chart(ctx, { type: 'line', data: data, options: { plugins:{ legend:{ display:false } } } });
     </script>
 </body>
 </html>
