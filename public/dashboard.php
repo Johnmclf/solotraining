@@ -226,7 +226,8 @@ $pointsRestants = $nextRank ? $nextRank['points'] - $points : 0;
 
       <!-- Menu desktop -->
       <div class="hidden md:flex items-center space-x-6">
-        <a href="dashboard.php" class="text-gray-300 hover:text-white transition">Statistiques</a>
+        <a href="home.php" class="text-gray-300 hover:text-white transition" >Quêtes</a>
+        <a href="objectifs.php" class="text-gray-300 hover:text-white transition">Objectifs</a>
         <div class="flex items-center space-x-4">
           <div title="<?= $points ?> points" class="w-10 h-10 rounded-full flex items-center justify-center font-bold border-2 <?= $rankColor ?>">
             <?= $rank ?>

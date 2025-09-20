@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($canClaimSecondary && isset($_POST['claim_secondary'])) {
-        $update = $conn->prepare("UPDATE users SET SET recompence2 = 0, point = point + 100 WHERE id = ?");
+        $update = $conn->prepare("UPDATE users SET recompence2 = 0, point = point + 100 WHERE id = ?");
         $update->execute([$userId]);
         header("Location: home.php?secondary=1");
         exit();
@@ -175,6 +175,7 @@ if ($points < 1000) {
       <!-- Menu desktop -->
       <div class="hidden md:flex items-center space-x-6">
         <a href="dashboard.php" class="text-gray-300 hover:text-white transition">Statistiques</a>
+        <a href="objectifs.php" class="text-gray-300 hover:text-white transition" >Objectifs</a>
         <div class="flex items-center space-x-4">
           <div title="<?= $points ?> points" class="w-10 h-10 rounded-full flex items-center justify-center font-bold border-2 <?= $rankColor ?>">
             <?= $rank ?>
@@ -195,8 +196,8 @@ if ($points < 1000) {
 
     <!-- Menu mobile (slide) -->
     <div id="mobile-menu" class="mobile-menu md:hidden">
-      <a href="objectifs.php">Objectifs</a>
       <a href="dashboard.php">Statistiques</a>
+      <a href="objectifs.php">Objectifs</a>
       <a href="index.html">Quitter</a>
     </div>
 </header>
