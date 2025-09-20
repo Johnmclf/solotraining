@@ -17,7 +17,7 @@ if (!isset($_SESSION['user_id'])) {
 $userId = $_SESSION['user_id'];
 
 // Récupération des données utilisateur (mêmes que dashboard + recompenses)
-$sql = "SELECT point, pompejour, abdosjour, totalpompe, totalabdos, jour1, jour2, jour3, jour4, jour5, jour6, jour7, combo, recompence, recompense2 
+$sql = "SELECT point, pompejour, abdosjour, totalpompe, totalabdos, jour1, jour2, jour3, jour4, jour5, jour6, jour7, combo, recompence, recompence2 
         FROM users WHERE id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->execute([$userId]);
@@ -27,7 +27,7 @@ $points      = $user['point'];
 $pompeJour   = $user['pompejour'];
 $abdosJour   = $user['abdosjour'];
 $recompense  = $user['recompence'];   // quête principale
-$recompense2 = $user['recompense2']; // quête secondaire
+$recompense2 = $user['recompence2']; // quête secondaire
 
 $totalPompe = $user['totalpompe'] ?? 0;
 $totalAbdos = $user['totalabdos'] ?? 0;
