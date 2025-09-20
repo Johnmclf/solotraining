@@ -133,7 +133,7 @@ $pointsRestants = $nextRank ? $nextRank['points'] - $points : 0;
     html,body{height:100%}
     body{
       margin:0;
-      font-family: Roboto, system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial;
+      font-family: 'Orbitron', sans-serif;
       background: var(--bg);
       color: #e2e8f0;
       -webkit-font-smoothing:antialiased;
@@ -219,42 +219,42 @@ $pointsRestants = $nextRank ? $nextRank['points'] - $points : 0;
 </head>
 <body class="font-orbitron">
   <!-- Header -->
-  <header class="bg-primary border-b border-accent/20 relative z-40">
-    <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+  <header class="bg-[#0a0c1c] border-b border-accent/20 w-full relative z-40">
+    <nav class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
       <div class="flex items-center space-x-2">
-        <i class="fas fa-fire text-accent text-2xl"></i>
-        <h1 class="text-2xl font-orbitron glow-text">SOLO TRAINING</h1>
+        <h1 class="text-xl font-orbitron glow-text">SOLO TRAINING</h1>
       </div>
 
       <!-- Menu desktop -->
       <div class="hidden md:flex items-center space-x-6">
-        <a href="home.php" class="text-gray-300 hover:text-white transition" >Quêtes</a>
+        <a href="home.php" class="text-gray-300 hover:text-white transition">Quêtes</a>
         <a href="objectifs.php" class="text-gray-300 hover:text-white transition">Objectifs</a>
         <div class="flex items-center space-x-4">
-          <div title="<?= $points ?> points" class="w-10 h-10 rounded-full flex items-center justify-center font-bold border-2 <?= $rankColor ?>">
+          <div title="<?= $points ?> points"
+              class="w-8 h-8 rounded-full flex items-center justify-center font-bold border <?= $rankColor ?>">
             <?= $rank ?>
           </div>
           <a href="index.html" class="text-gray-300 hover:text-white transition">
-            <img src="./asset/img/iconExit.png" class="w-12 h-9 opacity-70 hover:opacity-100 transition duration-200 px-2" alt="EXIT">
+            <img src="./asset/img/iconExit.png" class="w-10 h-7 opacity-70 hover:opacity-100 transition duration-200" alt="EXIT">
           </a>
         </div>
       </div>
 
       <!-- Bouton mobile -->
-      <button id="menu-btn" class="md:hidden flex items-center space-x-2 text-gray-300 focus:outline-none">
-        <span id="hamburger" class="text-2xl">☰</span>
-        <span id="close" class="hidden text-2xl">✖</span>
-        <span class="text-sm">Menu</span>
+      <button id="mobileToggle" class="md:hidden flex items-center space-x-2 text-gray-300 focus:outline-none">
+        <span id="hambIcon" class="text-2xl">☰</span>
+        <span id="closeIcon" class="hidden text-2xl">✖</span>
       </button>
     </nav>
 
-    <!-- Menu mobile (slide) -->
-    <div id="mobile-menu" class="mobile-menu md:hidden">
+    <!-- Menu mobile -->
+    <div id="mobileMenu" class="mobile-menu md:hidden">
       <a href="home.php">Quêtes</a>
       <a href="objectifs.php">Objectifs</a>
       <a href="index.html">Quitter</a>
     </div>
   </header>
+
 
   <!-- Main -->
   <main class="container mx-auto px-4 max-w-7xl py-12">
