@@ -120,22 +120,22 @@ $points = round(($userData['point']),2);
 if ($points < 1000) {
     $rank = "E";
     $rankColor = "border-green-400 text-green-400 shadow-[0_0_15px_#4ade80]";
-} elseif ($points < 3000) {
+} elseif ($points < 5000) {
     $rank = "D";
     $rankColor = "border-blue-400 text-blue-400 shadow-[0_0_15px_#60a5fa]";
-} elseif ($points < 5000) {
+} elseif ($points < 10000) {
     $rank = "C";
     $rankColor = "border-blue-700 text-blue-700 shadow-[0_0_15px_#1e40af]";
-} elseif ($points < 10000) {
+} elseif ($points < 25000) {
     $rank = "B";
     $rankColor = "border-pink-400 text-pink-400 shadow-[0_0_15px_#f472b6]";
-} elseif ($points < 30000) {
+} elseif ($points < 50000) {
     $rank = "A";
     $rankColor = "border-purple-500 text-purple-500 shadow-[0_0_15px_#a855f7]";
-} elseif ($points < 50000) {
+} elseif ($points < 100000) {
     $rank = "S";
     $rankColor = "border-yellow-300 text-yellow-300 shadow-[0_0_15px_#fde047]";
-} elseif ($points < 100000) {
+} elseif ($points < 250000) {
     $rank = "NATION";
     $rankColor = "border-orange-400 text-orange-400 shadow-[0_0_15px_#fb923c]";
 } else {
@@ -206,7 +206,6 @@ if ($points < 1000) {
     <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
       <!-- Logo -->
       <div class="flex items-center space-x-3">
-        <span class="material-icons text-purple-500 text-3xl">fitness_center</span>
         <h1 class="text-2xl font-bold tracking-widest text-purple-500">SOLO TRAINING</h1>
       </div>
 
@@ -236,7 +235,7 @@ if ($points < 1000) {
 
 
   <!-- Contenu -->
-  <main class="container mx-auto px-4 py-12 grid gap-8 md:grid-cols-3">
+  <main class="container mx-auto px-4 py-12 grid gap-8 md:grid-cols-3 mt-6">
     
     <!-- Colonne de gauche (progress bars) -->
     <div class="md:col-span-2 space-y-8">

@@ -54,22 +54,22 @@ $points = round(($userData['point']),2);
 if ($points < 1000) {
     $rank = "E";
     $rankColor = "border-green-400 text-green-400 shadow-[0_0_15px_#4ade80]";
-} elseif ($points < 3000) {
+} elseif ($points < 5000) {
     $rank = "D";
     $rankColor = "border-blue-400 text-blue-400 shadow-[0_0_15px_#60a5fa]";
-} elseif ($points < 5000) {
+} elseif ($points < 10000) {
     $rank = "C";
     $rankColor = "border-blue-700 text-blue-700 shadow-[0_0_15px_#1e40af]";
-} elseif ($points < 10000) {
+} elseif ($points < 25000) {
     $rank = "B";
     $rankColor = "border-pink-400 text-pink-400 shadow-[0_0_15px_#f472b6]";
-} elseif ($points < 30000) {
+} elseif ($points < 50000) {
     $rank = "A";
     $rankColor = "border-purple-500 text-purple-500 shadow-[0_0_15px_#a855f7]";
-} elseif ($points < 50000) {
+} elseif ($points < 100000) {
     $rank = "S";
     $rankColor = "border-yellow-300 text-yellow-300 shadow-[0_0_15px_#fde047]";
-} elseif ($points < 100000) {
+} elseif ($points < 250000) {
     $rank = "NATION";
     $rankColor = "border-orange-400 text-orange-400 shadow-[0_0_15px_#fb923c]";
 } else {
@@ -205,7 +205,7 @@ if ($points < 1000) {
 
 
 <!-- Quête principale -->
-<div class="perspective-container w-full max-w-3xl mt-10 ">
+<div class="perspective-container w-full max-w-3xl mt-6 ">
     <div class="quest-card bg-surface-dark/80 backdrop-blur-sm border-2 border-primary rounded-lg p-8 shadow-neon relative overflow-hidden">
         <div class="absolute inset-0 bg-[linear-gradient(to_right,#a855f733_1px,transparent_1px),linear-gradient(to_bottom,#a855f733_1px,transparent_1px)] bg-[size:20px_20px] opacity-20"></div>
         <div class="relative z-10 text-center">
@@ -230,7 +230,7 @@ if ($points < 1000) {
     </div>
 </div>
 
-<div class="perspective-container w-full max-w-3xl">
+<div class="perspective-container w-full max-w-3xl mb-6">
     <div class="quest-card bg-surface-dark/80 backdrop-blur-sm border-2 border-secondary rounded-lg p-8 shadow-neonBlue relative overflow-hidden">
         <div class="absolute inset-0 bg-[linear-gradient(to_right,#3b82f666_1px,transparent_1px),linear-gradient(to_bottom,#3b82f666_1px,transparent_1px)] bg-[size:20px_20px] opacity-20"></div>
         <div class="relative z-10 text-center">

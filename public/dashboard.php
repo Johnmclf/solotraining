@@ -67,22 +67,22 @@ $pointsToday = intval((($pompeJour + $abdosJour) / 2) * $combo);
 if ($points < 1000) {
     $rank = "E";
     $rankColor = "border-green-400 text-green-400 shadow-[0_0_15px_#4ade80]";
-} elseif ($points < 3000) {
+} elseif ($points < 5000) {
     $rank = "D";
     $rankColor = "border-blue-400 text-blue-400 shadow-[0_0_15px_#60a5fa]";
-} elseif ($points < 5000) {
+} elseif ($points < 10000) {
     $rank = "C";
     $rankColor = "border-blue-700 text-blue-700 shadow-[0_0_15px_#1e40af]";
-} elseif ($points < 10000) {
+} elseif ($points < 25000) {
     $rank = "B";
     $rankColor = "border-pink-400 text-pink-400 shadow-[0_0_15px_#f472b6]";
-} elseif ($points < 30000) {
+} elseif ($points < 50000) {
     $rank = "A";
     $rankColor = "border-purple-500 text-purple-500 shadow-[0_0_15px_#a855f7]";
-} elseif ($points < 50000) {
+} elseif ($points < 100000) {
     $rank = "S";
     $rankColor = "border-yellow-300 text-yellow-300 shadow-[0_0_15px_#fde047]";
-} elseif ($points < 100000) {
+} elseif ($points < 250000) {
     $rank = "NATION";
     $rankColor = "border-orange-400 text-orange-400 shadow-[0_0_15px_#fb923c]";
 } else {
@@ -92,12 +92,12 @@ if ($points < 1000) {
 
 $ranks = [
     ['name' => 'D', 'points' => 1000, 'color' => 'border-blue-400 text-blue-400 shadow-[0_0_15px_#60a5fa]'],
-    ['name' => 'C', 'points' => 3000, 'color' => 'border-blue-700 text-blue-700 shadow-[0_0_15px_#1e40af]'],
-    ['name' => 'B', 'points' => 5000, 'color' => 'border-pink-400 text-pink-400 shadow-[0_0_15px_#f472b6]'],
-    ['name' => 'A', 'points' => 10000, 'color' => 'border-purple-500 text-purple-500 shadow-[0_0_15px_#a855f7]'],
-    ['name' => 'S', 'points' => 30000, 'color' => 'border-yellow-300 text-yellow-300 shadow-[0_0_15px_#fde047]'],
-    ['name' => 'NATION', 'points' => 50000, 'color' => 'border-orange-400 text-orange-400 shadow-[0_0_15px_#fb923c]'],
-    ['name' => 'ERROR', 'points' => 100000, 'color' => 'border-red-600 text-red-600 shadow-[0_0_20px_#dc2626]'],
+    ['name' => 'C', 'points' => 5000, 'color' => 'border-blue-700 text-blue-700 shadow-[0_0_15px_#1e40af]'],
+    ['name' => 'B', 'points' => 10000, 'color' => 'border-pink-400 text-pink-400 shadow-[0_0_15px_#f472b6]'],
+    ['name' => 'A', 'points' => 25000, 'color' => 'border-purple-500 text-purple-500 shadow-[0_0_15px_#a855f7]'],
+    ['name' => 'S', 'points' => 50000, 'color' => 'border-yellow-300 text-yellow-300 shadow-[0_0_15px_#fde047]'],
+    ['name' => 'NATION', 'points' => 100000, 'color' => 'border-orange-400 text-orange-400 shadow-[0_0_15px_#fb923c]'],
+    ['name' => 'ERROR', 'points' => 250000, 'color' => 'border-red-600 text-red-600 shadow-[0_0_20px_#dc2626]'],
 ];
 
 $nextRank = null;
@@ -248,7 +248,7 @@ $pointsRestants = $nextRank ? $nextRank['points'] - $points : 0;
     </nav>
 
     <!-- Menu mobile -->
-    <div id="mobileMenu" class="mobile-menu md:hidden">
+    <div id="mobileMenu" class="mobile-menu md:hidden flex flex-col space-y-2">
       <a href="home.php">Quêtes</a>
       <a href="objectifs.php">Objectifs</a>
       <a href="index.html">Quitter</a>
