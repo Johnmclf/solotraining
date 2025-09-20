@@ -43,7 +43,8 @@ CREATE TABLE `users` (
   `point` int(11) DEFAULT 0,
   `lastConnexion` date DEFAULT NULL,
   `pompeJour` int(11) DEFAULT 0,
-  `abdosJour` int(11) DEFAULT 0
+  `abdosJour` int(11) DEFAULT 0,
+  `recompense` int(2) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
