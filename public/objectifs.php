@@ -237,7 +237,7 @@ if ($points < 1000) {
   <main class="container mx-auto px-4 py-12 grid gap-8 md:grid-cols-3 mt-8">
     
     <!-- Colonne de gauche (progress bars) -->
-    <div class="md:col-span-2 space-y-8">
+    <div class="md:col-span-2 space-y-8 mt-4">
       <!-- Objectif Pompes -->
       <div class="dashboard-card p-6 rounded-2xl">
         <div class="flex justify-between items-center mb-4">
