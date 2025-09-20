@@ -15,7 +15,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $userId = $_SESSION['user_id'];
-$stmt = $conn->prepare("SELECT pompejour FROM users WHERE id = ?");
+$stmt = $conn->prepare("SELECT pompejour, recompence FROM users WHERE id = ?");
 $stmt->execute([$userId]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
