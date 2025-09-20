@@ -14,6 +14,8 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
+$user_id = $_SESSION['user_id'];
+
 $userId = $_SESSION['user_id'];
 $stmt = $conn->prepare("SELECT pompejour, recompence, recompence2, abdosjour FROM users WHERE id = ?");
 $stmt->execute([$userId]);
