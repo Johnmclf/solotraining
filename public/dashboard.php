@@ -119,6 +119,7 @@ $pointsRestants = $nextRank ? $nextRank['points'] - $points : 0;
   <script src="./asset/tailwind.js"></script>
   <script src="./asset/chart.js"></script>
   <link href="./asset/googleapis" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <style>
     /* --- Base --- */

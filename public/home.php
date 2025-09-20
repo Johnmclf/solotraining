@@ -90,8 +90,7 @@ if ($points < 1000) {
 <style>
     .perspective-container { perspective: 1000px; }
     .quest-card:hover {
-    box-shadow: 0 0 20px #a855f7, 0 0 40px #a855f7;
-    border-color: #a855f7;
+    box-shadow: 0 0 20px, 0 0 40px;
     }
     .quest-card { transition: transform 0.4s ease; }
     .glitch {

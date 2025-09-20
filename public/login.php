@@ -112,6 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="./asset/tailwind.js"></script>
     <link href="./asset/googleapis" rel="stylesheet">
     <link rel="shortcut icon" href="./asset/img/iconPage.jpg" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
