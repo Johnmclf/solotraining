@@ -166,41 +166,42 @@ if ($points < 1000) {
 <body class="bg-black font-display text-gray-100 min-h-screen flex flex-col items-center justify-start p-4 gap-8">
 
 <header class="bg-primary border-b border-accent/20 relative z-40">
-    <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <div class="flex items-center space-x-2">
-        <i class="fas fa-fire text-accent text-2xl"></i>
-        <h1 class="text-2xl font-orbitron glow-text">SOLO TRAINING</h1>
-      </div>
-
-      <!-- Menu desktop -->
-      <div class="hidden md:flex items-center space-x-6">
-        <a href="dashboard.php" class="text-gray-300 hover:text-white transition">Statistiques</a>
-        <a href="objectifs.php" class="text-gray-300 hover:text-white transition" >Objectifs</a>
-        <div class="flex items-center space-x-4">
-          <div title="<?= $points ?> points" class="w-10 h-10 rounded-full flex items-center justify-center font-bold border-2 <?= $rankColor ?>">
-            <?= $rank ?>
-          </div>
-          <a href="index.html" class="text-gray-300 hover:text-white transition">
-            <img src="./asset/img/iconExit.png" class="w-12 h-9 opacity-70 hover:opacity-100 transition duration-200 px-2" alt="EXIT">
-          </a>
-        </div>
-      </div>
-
-      <!-- Bouton mobile -->
-      <button id="menu-btn" class="md:hidden flex items-center space-x-2 text-gray-300 focus:outline-none">
-        <span id="hamburger" class="text-2xl">☰</span>
-        <span id="close" class="hidden text-2xl">✖</span>
-        <span class="text-sm">Menu</span>
-      </button>
-    </nav>
-
-    <!-- Menu mobile (slide) -->
-    <div id="mobile-menu" class="mobile-menu md:hidden">
-      <a href="dashboard.php">Statistiques</a>
-      <a href="objectifs.php">Objectifs</a>
-      <a href="index.html">Quitter</a>
+  <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-2">
+      <i class="fas fa-fire text-accent text-2xl"></i>
+      <h1 class="text-2xl font-orbitron glow-text">SOLO TRAINING</h1>
     </div>
+
+    <!-- Menu desktop -->
+    <div class="hidden md:flex items-center space-x-6">
+      <a href="dashboard.php" class="text-gray-300 hover:text-white transition">Statistiques</a>
+      <a href="objectifs.php" class="text-gray-300 hover:text-white transition">Objectifs</a>
+      <div class="flex items-center space-x-4">
+        <div title="<?= $points ?> points" class="w-10 h-10 rounded-full flex items-center justify-center font-bold border-2 <?= $rankColor ?>">
+          <?= $rank ?>
+        </div>
+        <a href="index.html" class="text-gray-300 hover:text-white transition">
+          <img src="./asset/img/iconExit.png" class="w-12 h-9 opacity-70 hover:opacity-100 transition duration-200 px-2" alt="EXIT">
+        </a>
+      </div>
+    </div>
+
+    <!-- Bouton mobile -->
+    <button id="mobileToggle" class="md:hidden flex items-center space-x-2 text-gray-300 focus:outline-none">
+      <span id="hambIcon" class="text-2xl">☰</span>
+      <span id="closeIcon" class="hidden text-2xl">✖</span>
+      <span class="text-sm">Menu</span>
+    </button>
+  </nav>
+
+  <!-- Menu mobile (slide) -->
+  <div id="mobileMenu" class="mobile-menu md:hidden">
+    <a href="dashboard.php">Statistiques</a>
+    <a href="objectifs.php">Objectifs</a>
+    <a href="index.html">Quitter</a>
+  </div>
 </header>
+
 
 <!-- Quête principale -->
 <div class="perspective-container w-full max-w-3xl">
@@ -252,6 +253,45 @@ if ($points < 1000) {
         </div>
     </div>
 </div>
+
+<script>
+    (function(){
+        const toggle = document.getElementById('mobileToggle');
+        const menu = document.getElementById('mobileMenu');
+        const hamb = document.getElementById('hambIcon');
+        const closeI = document.getElementById('closeIcon');
+
+        if (!toggle || !menu) return;
+
+        function openMenu(open){
+            if(open){
+            menu.classList.add('open');
+            menu.setAttribute('aria-hidden','false');
+            toggle.setAttribute('aria-expanded','true');
+            hamb.style.display = 'none';
+            closeI.style.display = 'inline';
+            } else {
+            menu.classList.remove('open');
+            menu.setAttribute('aria-hidden','true');
+            toggle.setAttribute('aria-expanded','false');
+            hamb.style.display = 'inline';
+            closeI.style.display = 'none';
+            }
+        }
+
+        openMenu(false);
+        toggle.addEventListener('click', ()=> openMenu(!menu.classList.contains('open')));
+        document.addEventListener('click', (ev) => {
+            if(menu.classList.contains('open') && !menu.contains(ev.target) && !toggle.contains(ev.target)){
+            openMenu(false);
+            }
+        });
+        document.addEventListener('keydown', (e)=> {
+            if(e.key === 'Escape' && menu.classList.contains('open')) openMenu(false);
+        });
+    })();
+</script>
+
 
 </body>
 </html>

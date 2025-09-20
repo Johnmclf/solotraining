@@ -355,10 +355,10 @@ $pointsRestants = $nextRank ? $nextRank['points'] - $points : 0;
   <script>
     // Mobile menu toggle logic (robuste)
     (function(){
-      const toggle = document.getElementById('mobileToggle');
-      const menu = document.getElementById('mobileMenu');
-      const hamb = document.getElementById('hambIcon');
-      const closeI = document.getElementById('closeIcon');
+      const toggle = document.getElementById('menu-btn');
+      const menu = document.getElementById('mobile-menu');
+      const hamb = document.getElementById('hamburger');
+      const closeI = document.getElementById('close');
 
       if (!toggle || !menu) return;
 
