@@ -174,7 +174,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </button>
       </form>
       <?php if (isset($_GET['success'])): ?>
-        <p class="mt-6 text-green-400 font-bold">🎉 Récompense récupérée avec succès !</p>
+        <p class="mt-6 text-green-400 font-bold"> Récompense récupérée avec succès !</p>
       <?php endif; ?>
     </div>
   </div>
@@ -201,7 +201,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </button>
       </form>
       <?php if (isset($_GET['secondary'])): ?>
-        <p class="mt-6 text-green-400 font-bold">🎉 Récompense secondaire récupérée avec succès !</p>
+        <p class="mt-6 text-green-400 font-bold"> Récompense secondaire récupérée avec succès !</p>
       <?php endif; ?>
     </div>
   </div>
