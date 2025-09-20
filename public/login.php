@@ -112,6 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="./asset/tailwind.js"></script>
     <link href="./asset/googleapis" rel="stylesheet">
     <link rel="shortcut icon" href="./asset/img/iconPage.jpg" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
@@ -135,7 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     </style>
 </head>
-<body class="font-roboto min-h-screen flex items-center justify-center p-4">
+<body class="font-orbitron min-h-screen flex items-center justify-center p-4">
     <div class="fixed inset-0 bg-[url('./asset/img/fondLogin.webp')] bg-cover bg-center opacity-20 -z-10"></div>
 
     <div class="auth-card rounded-xl p-8 w-full max-w-md">

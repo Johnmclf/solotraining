@@ -89,8 +89,11 @@ if ($points < 1000) {
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet"/>
 <style>
     .perspective-container { perspective: 1000px; }
+    .quest-card:hover {
+    box-shadow: 0 0 20px #a855f7, 0 0 40px #a855f7;
+    border-color: #a855f7;
+    }
     .quest-card { transition: transform 0.4s ease; }
-    .quest-card:hover { transform: scale(1.02); }
     .glitch {
         text-shadow: 0.05em 0 0 rgba(255,0,0,.75),
                      -0.025em -0.05em 0 rgba(0,255,0,.75),
@@ -173,7 +176,7 @@ if ($points < 1000) {
 
     <!-- Menu desktop -->
     <div class="hidden md:flex items-center space-x-6">
-      <a href="dashboard.php" class="text-gray-300 hover:text-white transition">Quêtes</a>
+      <a href="dashboard.php" class="text-gray-300 hover:text-white transition">Statistiques</a>
       <a href="objectifs.php" class="text-gray-300 hover:text-white transition">Objectifs</a>
       <div class="flex items-center space-x-4">
         <div title="<?= $points ?> points"
@@ -202,9 +205,8 @@ if ($points < 1000) {
 </header>
 
 
-
 <!-- Quête principale -->
-<div class="perspective-container w-full max-w-3xl">
+<div class="perspective-container w-full max-w-3xl mt-12 ">
     <div class="quest-card bg-surface-dark/80 backdrop-blur-sm border-2 border-primary rounded-lg p-8 shadow-neon relative overflow-hidden">
         <div class="absolute inset-0 bg-[linear-gradient(to_right,#a855f733_1px,transparent_1px),linear-gradient(to_bottom,#a855f733_1px,transparent_1px)] bg-[size:20px_20px] opacity-20"></div>
         <div class="relative z-10 text-center">

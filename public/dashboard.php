@@ -119,6 +119,7 @@ $pointsRestants = $nextRank ? $nextRank['points'] - $points : 0;
   <script src="./asset/tailwind.js"></script>
   <script src="./asset/chart.js"></script>
   <link href="./asset/googleapis" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <style>
     /* --- Base --- */
     :root{
@@ -215,7 +216,7 @@ $pointsRestants = $nextRank ? $nextRank['points'] - $points : 0;
     .u-hidden{display:none}
   </style>
 </head>
-<body>
+<body class="font-orbitron">
   <!-- Header -->
   <header class="bg-primary border-b border-accent/20 relative z-40">
     <nav class="container mx-auto px-4 py-4 flex justify-between items-center">

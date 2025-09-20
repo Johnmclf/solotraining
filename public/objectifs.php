@@ -155,6 +155,7 @@ if ($points < 1000) {
   <link href="./asset/googleapis" rel="stylesheet">
   <link rel="stylesheet" href="asset/style.css">
   <link rel="shortcut icon" href="./asset/img/iconPage.jpg" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
@@ -197,7 +198,7 @@ if ($points < 1000) {
     .mobile-menu a:hover { color: #fff; text-decoration: underline; }
   </style>
 </head>
-<body class="font-roboto min-h-screen">
+<body class="font-orbitron min-h-screen">
   <!-- Header -->
   <header class="bg-primary border-b border-accent/20 relative z-40">
     <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
