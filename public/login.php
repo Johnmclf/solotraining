@@ -51,7 +51,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 } else {
                     $comboGain = 0.00;
                     if ($pompe >= 100) $comboGain += 0.05;
-                    if ($abdos >= 100) $comboGain += 0.05;
 
                     if ($comboGain > 0) {
                         $combo = round($combo + $comboGain, 2);
@@ -69,8 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Calcul de la pénalité
                 $penaliteTotale = 0;
                 for ($d = 0; $d < min($daysPassed, 7); $d++) {
-                    if ($pompe < 100) $penaliteTotale += 50;
-                    if ($abdos < 100) $penaliteTotale += 50;
+                    if ($pompe < 100) $penaliteTotale += 100;
                 }
 
                 $nouveauxPoints = max(0, $user['point'] - $penaliteTotale);
@@ -87,13 +85,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Mise à jour finale
                 $update = $pdo->prepare("UPDATE users SET 
                     jour1 = ?, jour2 = ?, jour3 = ?, jour4 = ?, jour5 = ?, jour6 = ?, jour7 = ?, 
-                    pompejour = 0, abdosjour = 0, lastconnexion = CURRENT_DATE, point = ?, combo = ? 
+                    pompejour = 0, abdosjour = 0, recompence = 1, recompence2 = 1 lastconnexion = CURRENT_DATE, point = ?, combo = ? 
                     WHERE id = ?");
                 $update->execute([...$jours, $nouveauxPoints, $combo, $user['id']]);
             }
 
             // Redirection
-            header('Location: dashboard.php');
+            header('Location: home.php');
             exit;
         } else {
             $error = "Mot de passe ou identifiant incorrect.";

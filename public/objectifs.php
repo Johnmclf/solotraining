@@ -229,6 +229,7 @@ if ($points < 1000) {
 
     <!-- Menu mobile (slide) -->
     <div id="mobile-menu" class="mobile-menu md:hidden">
+      <a href="home.php">Quêtes</a>
       <a href="dashboard.php">Statistiques</a>
       <a href="index.html">Quitter</a>
     </div>

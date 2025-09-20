@@ -217,64 +217,39 @@ $pointsRestants = $nextRank ? $nextRank['points'] - $points : 0;
 </head>
 <body>
   <!-- Header -->
-  <header>
-    <nav class="container mx-auto px-4 py-4" role="navigation" aria-label="Main navigation">
-      <!-- left -->
-      <div style="display:flex;align-items:center;gap:.6rem;">
-        <!-- simple SVG/fire-like fallback -->
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="color: #8b5cf6;"><path d="M12 2s1.5 2.5 1.5 4-1 2.5-1 4 1 2.5 1 4-2 3-2 3-4-3-4-6 2-5 2-7-1-4-1-4 3 1 3 3z" fill="currentColor"/></svg>
-        <h1 class="glow-text" style="font-size:18px;margin:0;font-weight:700;">SOLO TRAINING</h1>
+  <header class="bg-primary border-b border-accent/20 relative z-40">
+    <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <i class="fas fa-fire text-accent text-2xl"></i>
+        <h1 class="text-2xl font-orbitron glow-text">SOLO TRAINING</h1>
       </div>
 
-      <!-- right -->
-      <div style="display:flex;align-items:center;gap:1rem;">
-        <!-- Desktop menu (shown on >=768px via CSS) -->
-        <div class="desktop-menu">
-          <a href="objectifs.php" class="text-gray-300 hover:text-white transition menu-link" style="color:#d1d5db;">Objectifs</a>
-
-          <div style="display:flex;align-items:center;gap:.6rem;">
-            <div title="<?= $points ?> points" class="rank-circle <?= $rankColor ?>">
-              <?= $rank ?>
-            </div>
-            <a href="index.html" aria-label="Exit" title="Quitter">
-              <img src="./asset/img/iconExit.png" alt="exit" class="exit-img">
-            </a>
+      <!-- Menu desktop -->
+      <div class="hidden md:flex items-center space-x-6">
+        <a href="dashboard.php" class="text-gray-300 hover:text-white transition">Statistiques</a>
+        <div class="flex items-center space-x-4">
+          <div title="<?= $points ?> points" class="w-10 h-10 rounded-full flex items-center justify-center font-bold border-2 <?= $rankColor ?>">
+            <?= $rank ?>
           </div>
-        </div>
-
-        <!-- Mobile toggle (always visible on small screens) -->
-        <div id="mobileToggle" class="mobile-toggle" role="button" aria-expanded="false" aria-controls="mobileMenu" tabindex="0">
-          <!-- visible hamburger -->
-          <span id="hambIcon" style="font-size:20px;line-height:1;">☰</span>
-          <!-- hidden close -->
-          <span id="closeIcon" style="display:none;font-size:20px;line-height:1;">✖</span>
-          <span class="menu-label" style="font-size:14px;display:inline-block;">Menu</span>
-        </div>
-      </div>
-    </nav>
-
-    <!-- Mobile menu (slide down) -->
-    <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
-      <div class="menu-inner">
-        <a href="objectifs.php" class="menu-link">Objectifs</a>
-
-        <div class="row" style="justify-content:space-between;">
-          <div style="display:flex;align-items:center;gap:.75rem;">
-            <div title="<?= $points ?> points" class="rank-circle <?= $rankColor ?>">
-              <?= $rank ?>
-            </div>
-            <div>
-              <div style="font-weight:600;color:#e2e8f0;">Points</div>
-              <div style="font-size:.9rem;color:#9ca3af;">+<?= $pointsToday ?> aujourd'hui</div>
-            </div>
-          </div>
-
-          <a href="index.html" class="menu-link" style="display:flex;align-items:center;gap:.5rem;">
-            <img src="./asset/img/iconExit.png" alt="exit" class="exit-img" style="width:36px;height:28px;">
-            <span class="menu-hint">Quitter</span>
+          <a href="index.html" class="text-gray-300 hover:text-white transition">
+            <img src="./asset/img/iconExit.png" class="w-12 h-9 opacity-70 hover:opacity-100 transition duration-200 px-2" alt="EXIT">
           </a>
         </div>
       </div>
+
+      <!-- Bouton mobile -->
+      <button id="menu-btn" class="md:hidden flex items-center space-x-2 text-gray-300 focus:outline-none">
+        <span id="hamburger" class="text-2xl">☰</span>
+        <span id="close" class="hidden text-2xl">✖</span>
+        <span class="text-sm">Menu</span>
+      </button>
+    </nav>
+
+    <!-- Menu mobile (slide) -->
+    <div id="mobile-menu" class="mobile-menu md:hidden">
+      <a href="home.php">Quêtes</a>
+      <a href="objectifs.php">Objectifs</a>
+      <a href="index.html">Quitter</a>
     </div>
   </header>
 
