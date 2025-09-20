@@ -228,14 +228,13 @@ if ($points < 1000) {
     <div id="mobileMenu" class="mobile-menu md:hidden">
       <a href="home.php">Quêtes</a>
       <a href="dashboard.php">Statistiques</a>
-      <a href="objectifs.php" class="text-purple-400">Objectifs</a>
       <a href="index.html">Quitter</a>
     </div>
   </header>
 
 
   <!-- Contenu -->
-  <main class="container mx-auto px-4 py-12 grid gap-8 md:grid-cols-3 mt-6">
+  <main class="container mx-auto px-4 py-12 grid gap-8 md:grid-cols-3 mt-8">
     
     <!-- Colonne de gauche (progress bars) -->
     <div class="md:col-span-2 space-y-8">

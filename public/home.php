@@ -205,7 +205,7 @@ if ($points < 1000) {
 
 
 <!-- Quête principale -->
-<div class="perspective-container w-full max-w-3xl mt-6 ">
+<div class="perspective-container w-full max-w-3xl mt-4 ">
     <div class="quest-card bg-surface-dark/80 backdrop-blur-sm border-2 border-primary rounded-lg p-8 shadow-neon relative overflow-hidden">
         <div class="absolute inset-0 bg-[linear-gradient(to_right,#a855f733_1px,transparent_1px),linear-gradient(to_bottom,#a855f733_1px,transparent_1px)] bg-[size:20px_20px] opacity-20"></div>
         <div class="relative z-10 text-center">
@@ -230,7 +230,7 @@ if ($points < 1000) {
     </div>
 </div>
 
-<div class="perspective-container w-full max-w-3xl mb-6">
+<div class="perspective-container w-full max-w-3xl mb-7">
     <div class="quest-card bg-surface-dark/80 backdrop-blur-sm border-2 border-secondary rounded-lg p-8 shadow-neonBlue relative overflow-hidden">
         <div class="absolute inset-0 bg-[linear-gradient(to_right,#3b82f666_1px,transparent_1px),linear-gradient(to_bottom,#3b82f666_1px,transparent_1px)] bg-[size:20px_20px] opacity-20"></div>
         <div class="relative z-10 text-center">

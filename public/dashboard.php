@@ -248,9 +248,9 @@ $pointsRestants = $nextRank ? $nextRank['points'] - $points : 0;
     </nav>
 
     <!-- Menu mobile -->
-    <div id="mobileMenu" class="mobile-menu md:hidden flex flex-col space-y-2">
+    <div id="mobileMenu" class="mobile-menu md:hidden">
       <a href="home.php">Quêtes</a>
-      <a href="objectifs.php">Objectifs</a>
+      <a href="dashboard.php">Statistiques</a>
       <a href="index.html">Quitter</a>
     </div>
   </header>
