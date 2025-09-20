@@ -227,8 +227,8 @@ $pointsRestants = $nextRank ? $nextRank['points'] - $points : 0;
 
       <!-- Menu desktop -->
       <div class="hidden md:flex items-center space-x-6">
-        <a href="home.php" class="text-gray-300 hover:text-white transition">Quêtes</a>
-        <a href="objectifs.php" class="text-gray-300 hover:text-white transition">Objectifs</a>
+        <a href="home.php" class="text-gray-300 hover:text-white hover:underline transition">Quêtes</a>
+        <a href="objectifs.php" class="text-gray-300 hover:text-white hover:underline transition">Objectifs</a>
         <div class="flex items-center space-x-4">
           <div title="<?= $points ?> points"
               class="w-8 h-8 rounded-full flex items-center justify-center font-bold border <?= $rankColor ?>">
@@ -248,11 +248,12 @@ $pointsRestants = $nextRank ? $nextRank['points'] - $points : 0;
     </nav>
 
     <!-- Menu mobile -->
-    <div id="mobileMenu" class="mobile-menu md:hidden">
-      <a href="home.php">Quêtes</a>
-      <a href="dashboard.php">Statistiques</a>
-      <a href="index.html">Quitter</a>
+    <div id="mobileMenu" class="mobile-menu md:hidden flex flex-col space-y-2 px-6 py-4">
+      <a href="home.php" class="text-gray-300 hover:text-white hover:underline">Quêtes</a>
+      <a href="dashboard.php" class="text-gray-300 hover:text-white hover:underline">Statistiques</a>
+      <a href="index.html" class="text-gray-300 hover:text-white hover:underline">Quitter</a>
     </div>
+
   </header>
 
 
