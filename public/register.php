@@ -68,6 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         body {
             background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
             color: #e2e8f0;
+            font-family: 'Orbitron', sans-serif;
         }
         .glow-text {
             text-shadow: 0 0 5px rgba(124, 58, 237, 0.7);
@@ -80,10 +81,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .input-field {
             background: rgba(15, 23, 42, 0.5);
             border: 1px solid rgba(124, 58, 237, 0.3);
+            color: #000;
         }
         .input-field:focus {
             border-color: #7c3aed;
             box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+        }
+        .input-field::placeholder {
+            color: #555;
         }
     </style>
 </head>

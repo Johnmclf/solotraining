@@ -159,6 +159,7 @@ if ($points < 1000) {
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
+      font-family: 'Orbitron', sans-serif;
       background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
       color: #e2e8f0;
     }
@@ -201,42 +202,38 @@ if ($points < 1000) {
 </head>
 <body class="font-orbitron min-h-screen">
   <!-- Header -->
-  <header class="bg-primary border-b border-accent/20 relative z-40">
-    <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <div class="flex items-center space-x-2">
-        <i class="fas fa-fire text-accent text-2xl"></i>
-        <h1 class="text-2xl font-orbitron glow-text">SOLO TRAINING</h1>
+  <header class="bg-[#0a0a0a]/90 border-b border-purple-500/30 fixed w-full top-0 left-0 z-50">
+    <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <!-- Logo -->
+      <div class="flex items-center space-x-3">
+        <span class="material-icons text-purple-500 text-3xl">fitness_center</span>
+        <h1 class="text-2xl font-bold tracking-widest text-purple-500">SOLO TRAINING</h1>
       </div>
 
       <!-- Menu desktop -->
-      <div class="hidden md:flex items-center space-x-6">
-        <a href="home.php" class="text-gray-300 hover:text-white transition" >Quêtes</a>
-        <a href="dashboard.php" class="text-gray-300 hover:text-white transition">Statistiques</a>
-        <div class="flex items-center space-x-4">
-          <div title="<?= $points ?> points" class="w-10 h-10 rounded-full flex items-center justify-center font-bold border-2 <?= $rankColor ?>">
-            <?= $rank ?>
-          </div>
-          <a href="index.html" class="text-gray-300 hover:text-white transition">
-            <img src="./asset/img/iconExit.png" class="w-12 h-9 opacity-70 hover:opacity-100 transition duration-200 px-2" alt="EXIT">
-          </a>
-        </div>
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="home.php" class="text-gray-300 hover:text-purple-400 transition">Quêtes</a>
+        <a href="dashboard.php" class="text-gray-300 hover:text-purple-400 transition">Statistiques</a>
+        <a href="objectifs.php" class="text-purple-400 font-bold">Objectifs</a>
+        <a href="index.html" class="text-gray-300 hover:text-red-400 transition">Quitter</a>
       </div>
 
       <!-- Bouton mobile -->
-      <button id="menu-btn" class="md:hidden flex items-center space-x-2 text-gray-300 focus:outline-none">
-        <span id="hamburger" class="text-2xl">☰</span>
-        <span id="close" class="hidden text-2xl">✖</span>
-        <span class="text-sm">Menu</span>
+      <button id="mobileToggle" class="md:hidden flex items-center space-x-2 text-gray-300 focus:outline-none">
+        <span id="hambIcon" class="text-2xl">☰</span>
+        <span id="closeIcon" class="hidden text-2xl">✖</span>
       </button>
     </nav>
 
-    <!-- Menu mobile (slide) -->
-    <div id="mobile-menu" class="mobile-menu md:hidden">
+    <!-- Menu mobile -->
+    <div id="mobileMenu" class="mobile-menu md:hidden">
       <a href="home.php">Quêtes</a>
       <a href="dashboard.php">Statistiques</a>
+      <a href="objectifs.php" class="text-purple-400">Objectifs</a>
       <a href="index.html">Quitter</a>
     </div>
   </header>
+
 
   <!-- Contenu -->
   <main class="container mx-auto px-4 py-12 grid gap-8 md:grid-cols-3">
@@ -318,17 +315,17 @@ if ($points < 1000) {
   </main>
 
   <script>
-    // Toggle menu mobile avec icônes ☰ et ✖
-    const btn = document.getElementById("menu-btn");
-    const mobileMenu = document.getElementById("mobile-menu");
-    const hamb = document.getElementById("hamburger");
-    const close = document.getElementById("close");
+    const toggle = document.getElementById('mobileToggle');
+    const menu = document.getElementById('mobileMenu');
+    const hamb = document.getElementById('hambIcon');
+    const closeI = document.getElementById('closeIcon');
 
-    btn.addEventListener("click", () => {
-      mobileMenu.classList.toggle("open");
-      hamb.classList.toggle("hidden");
-      close.classList.toggle("hidden");
+    toggle.addEventListener('click', () => {
+      menu.classList.toggle('open');
+      hamb.classList.toggle('hidden');
+      closeI.classList.toggle('hidden');
     });
   </script>
+
 </body>
 </html>
