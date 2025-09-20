@@ -250,7 +250,7 @@ $pointsRestants = $nextRank ? $nextRank['points'] - $points : 0;
     <!-- Menu mobile -->
     <div id="mobileMenu" class="mobile-menu md:hidden flex flex-col space-y-2 px-6 py-4">
       <a href="home.php" class="text-gray-300 hover:text-white hover:underline">Quêtes</a>
-      <a href="dashboard.php" class="text-gray-300 hover:text-white hover:underline">Statistiques</a>
+      <a href="objectifs.php" class="text-gray-300 hover:text-white hover:underline">Objectifs</a>
       <a href="index.html" class="text-gray-300 hover:text-white hover:underline">Quitter</a>
     </div>
 

@@ -213,7 +213,6 @@ if ($points < 1000) {
       <div class="hidden md:flex items-center space-x-8">
         <a href="home.php" class="text-gray-300 hover:text-purple-400 transition">Quêtes</a>
         <a href="dashboard.php" class="text-gray-300 hover:text-purple-400 transition">Statistiques</a>
-        <a href="objectifs.php" class="text-purple-400 font-bold">Objectifs</a>
         <a href="index.html" class="text-gray-300 hover:text-red-400 transition">Quitter</a>
       </div>
 
