@@ -15,17 +15,17 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $userId = $_SESSION['user_id'];
-$stmt = $conn->prepare("SELECT pompejour, recompense FROM users WHERE id = ?");
+$stmt = $conn->prepare("SELECT pompejour, recompence FROM users WHERE id = ?");
 $stmt->execute([$userId]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $pompeJour = $user['pompejour'];
-$recompense = $user['recompense'];
+$recompense = $user['recompence'];
 
 $canClaim = ($pompeJour >= 100 && $recompense == 1);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $canClaim) {
-    $update = $conn->prepare("UPDATE users SET recompense = 0, point = point + 200 WHERE id = ?");
+    $update = $conn->prepare("UPDATE users SET recompence = 0, point = point + 200 WHERE id = ?");
     $update->execute([$userId]);
     header("Location: home.php?success=1");
     exit();
