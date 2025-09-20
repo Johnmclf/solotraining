@@ -44,6 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+$resultPoints = $conn->query("SELECT point FROM users WHERE id = $user_id");
+$userData = $resultPoints->fetch(PDO::FETCH_ASSOC);
 $points = round(($userData['point']),2);
 
 // Détermination du rang et style en fonction des points
