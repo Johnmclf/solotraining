@@ -165,23 +165,23 @@ if ($points < 1000) {
 </head>
 <body class="bg-black font-display text-gray-100 min-h-screen flex flex-col items-center justify-start p-4 gap-8">
 
-<header class="bg-primary border-b border-accent/20 relative z-40">
-  <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+<header class="bg-[#0a0c1c] border-b border-accent/20 w-full relative z-40">
+  <nav class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
     <div class="flex items-center space-x-2">
-      <i class="fas fa-fire text-accent text-2xl"></i>
-      <h1 class="text-2xl font-orbitron glow-text">SOLO TRAINING</h1>
+      <h1 class="text-xl font-orbitron glow-text">SOLO TRAINING</h1>
     </div>
 
     <!-- Menu desktop -->
     <div class="hidden md:flex items-center space-x-6">
-      <a href="dashboard.php" class="text-gray-300 hover:text-white transition">Statistiques</a>
+      <a href="dashboard.php" class="text-gray-300 hover:text-white transition">Quêtes</a>
       <a href="objectifs.php" class="text-gray-300 hover:text-white transition">Objectifs</a>
       <div class="flex items-center space-x-4">
-        <div title="<?= $points ?> points" class="w-10 h-10 rounded-full flex items-center justify-center font-bold border-2 <?= $rankColor ?>">
+        <div title="<?= $points ?> points"
+             class="w-8 h-8 rounded-full flex items-center justify-center font-bold border <?= $rankColor ?>">
           <?= $rank ?>
         </div>
         <a href="index.html" class="text-gray-300 hover:text-white transition">
-          <img src="./asset/img/iconExit.png" class="w-12 h-9 opacity-70 hover:opacity-100 transition duration-200 px-2" alt="EXIT">
+          <img src="./asset/img/iconExit.png" class="w-10 h-7 opacity-70 hover:opacity-100 transition duration-200" alt="EXIT">
         </a>
       </div>
     </div>
@@ -190,17 +190,17 @@ if ($points < 1000) {
     <button id="mobileToggle" class="md:hidden flex items-center space-x-2 text-gray-300 focus:outline-none">
       <span id="hambIcon" class="text-2xl">☰</span>
       <span id="closeIcon" class="hidden text-2xl">✖</span>
-      <span class="text-sm">Menu</span>
     </button>
   </nav>
 
-  <!-- Menu mobile (slide) -->
+  <!-- Menu mobile -->
   <div id="mobileMenu" class="mobile-menu md:hidden">
-    <a href="dashboard.php">Statistiques</a>
+    <a href="dashboard.php">Quêtes</a>
     <a href="objectifs.php">Objectifs</a>
     <a href="index.html">Quitter</a>
   </div>
 </header>
+
 
 
 <!-- Quête principale -->
