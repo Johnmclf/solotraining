@@ -5,7 +5,7 @@ session_start();
 $currentHour = (int) date('H');
 
 // --- BLOCK entre 22h et 04h ---
-if ($currentHour >= 22 || $currentHour < 4) {
+if ($currentHour >= 21 || $currentHour < 4) {
     // On renvoie une page "down" ET on affiche l'heure serveur dans la console.
     // Important : on quitte tout de suite (exit) => aucun header ne sera modifié ensuite.
     ?>
