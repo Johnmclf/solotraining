@@ -5,7 +5,7 @@ session_start();
 $currentHour = (int) date('H');
 
 // --- BLOCK entre 22h et 04h ---
-if ($currentHour >= 21 || $currentHour < 4) {
+if ($currentHour >= 22 || $currentHour < 4) {
     // On renvoie une page "down" ET on affiche l'heure serveur dans la console.
     // Important : on quitte tout de suite (exit) => aucun header ne sera modifié ensuite.
     ?>
@@ -27,9 +27,8 @@ if ($currentHour >= 21 || $currentHour < 4) {
     <body>
       <div class="card">
         <h1>Connexions désactivées</h1>
-        <p>Les connexions sont temporairement fermées entre <strong>22h00</strong> et <strong>04h00</strong>.</p>
+        <p>Les connexions sont temporairement fermées entre <strong>00h00</strong> et <strong>04h00</strong>.</p>
         <p>Merci de revenir plus tard.</p>
-        <p style="margin-top:1rem;font-size:.9rem;color:#aaa;">Heure serveur actuelle : <strong><?= htmlentities($currentHour) ?>h</strong></p>
       </div>
 
       <script>
