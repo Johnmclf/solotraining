@@ -133,15 +133,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Connexion - Solo Training</title>
-  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <script src="./asset/tailwind.js"></script>
+    <link href="./asset/googleapis" rel="stylesheet">
+    <link rel="shortcut icon" href="./asset/img/iconPage.jpg" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body{background:radial-gradient(circle at center,#0f172a 0%,#020617 100%);font-family:'Orbitron',sans-serif;color:#e2e8f0}
     .auth-card{background:rgba(30,41,59,0.8);backdrop-filter:blur(10px);border:1px solid rgba(124,58,237,0.3)}
     .input-field{background:rgba(15,23,42,0.5);border:1px solid rgba(124,58,237,0.3);color:#000}
   </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-4">
+<body class="font-orbitron min-h-screen flex items-center justify-center p-4">
+  <div class="fixed inset-0 bg-[url('./asset/img/fondLogin.webp')] bg-cover bg-center opacity-20 -z-10"></div>
   <div class="auth-card rounded-xl p-8 w-full max-w-md">
     <div class="text-center mb-8">
       <h1 class="text-3xl mb-2">CONNEXION</h1>
@@ -170,9 +174,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
   </div>
 
-  <script>
-    // affiche l'heure serveur (renvoyée par PHP) dans la console du navigateur
-    console.log('Heure actuelle (serveur PHP) : <?= $currentHour ?>h');
-  </script>
 </body>
 </html>
