@@ -2,7 +2,7 @@
 session_start();
 
 $currentHour = (int)date('H');
-if ($currentHour >= 20 && $currentHour < 4) {
+if ($currentHour >= 20 && $currentHour < 20) {
     die("<h2 style='text-align:center; margin-top:50px; font-family:sans-serif; color:red'>
         Connexions désactivées entre 00h00 et 04h00 <br>
         Merci de revenir plus tard. $currentHour
