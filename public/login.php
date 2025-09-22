@@ -2,10 +2,6 @@
 session_start();
 
 $currentHour = (int)date('H');
-
-// Debug en console navigateur
-echo "<script>console.log('Heure actuelle (serveur) : " . $currentHour . "h');</script>";
-
 // Bloquer entre 00h00 et 04h00
 if ($currentHour >= 0 && $currentHour < 4) {
     die("<h2 style='text-align:center; margin-top:50px; font-family:sans-serif; color:red'>
@@ -185,4 +181,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
     </div>
 </body>
+<script>
+    console.log("Heure actuelle (serveur PHP) : <?= $currentHour ?>h");
+</script>
+
 </html>
