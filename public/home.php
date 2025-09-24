@@ -10,13 +10,29 @@ try {
 }
 
 if (!isset($_SESSION['user_id'])) {
-    header('Location: index.php');
+    header('Location: login.php');
     exit();
 }
 
 $user_id = $_SESSION['user_id'];
-
 $userId = $_SESSION['user_id'];
+$today = date('Y-m-d');
+
+// Récupère la dernière date de connexion
+$stmt = $conn->prepare("SELECT lastconnexion FROM users WHERE id = ?");
+$stmt->execute([$userId]);
+$lastConnexion = $stmt->fetchColumn();
+
+
+$lastConnexionDate = date('Y-m-d', strtotime($lastConnexion));
+if ($lastConnexionDate !== $today) {
+    session_unset();
+    session_destroy();
+    header('Location: login.php?deconnexion=1');
+    exit();
+}
+
+
 $stmt = $conn->prepare("SELECT pompejour, recompence, recompence2, abdosjour FROM users WHERE id = ?");
 $stmt->execute([$userId]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
